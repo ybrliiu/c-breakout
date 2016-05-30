@@ -3,8 +3,8 @@ typedef enum {
   Game,
   Help,
   Score,
-} Scene_Manager;
+} Scene_manager;
 
-void Scene_Update();
-void Scene_Draw();
-void Scene_Change(Scene_Manager next);
+void Scene_update();
+void Scene_draw();
+void Scene_change(Scene_manager next);
