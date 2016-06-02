@@ -1,17 +1,19 @@
 #include "Start.h"
 
+#include <stdlib.h>
 #include <ncurses.h>
 #include <unistd.h>
 #include <string.h>
 #include <locale.h>
 
 //変数宣言
-static int MENU_Y[3] = {10, 11, 12}; /* メニューのy座標 */
+static int MENU_Y[4] = {10, 11, 12, 13}; /* メニューのy座標 */
 static int MENU_X = 20; /* メニューのx座標 */
 typedef enum {
   emenu_game,
   emenu_config,
   emenu_start,
+  emenu_game_quit,
   emenu_num,
 } emenu;
 static int nowSelect = emenu_game;
@@ -41,22 +43,15 @@ void Start_update() {
     beforeSelect = nowSelect;
     nowSelect = (nowSelect + (emenu_num - 1)) % emenu_num;
   }
-  /*
-  if(button_get(KEY_INPUT_4) == 1){ //Oボタン押されたら
-    switch(nowSelect){
-      case emenu_game:
-        scene_changeScene(scene_game);
-        game_gamestart(0);
-        break;
-      case emenu_config:
-        scene_changeScene(scene_menu);
-        break;
-      case emenu_start:
-        scene_changeScene(scene_start);
+
+  if (key == ' ') {
+    switch (nowSelect) {
+      case emenu_game_quit:
+        endwin();
+        exit(0);
         break;
     }
   }
-  */
 
 }
 
@@ -84,6 +79,7 @@ void Start_draw() {
   mvaddstr(MENU_Y[0], MENU_X, "ゲームスタート");
   mvaddstr(MENU_Y[1], MENU_X, "スコア");
   mvaddstr(MENU_Y[2], MENU_X, "ヘルプ");
+  mvaddstr(MENU_Y[3], MENU_X, "ゲーム終了");
 
   switch (beforeSelect) { //選択箇所によって描画変更
     case emenu_game:
@@ -94,6 +90,9 @@ void Start_draw() {
       break;
     case emenu_start:
       y = MENU_Y[2];
+      break;
+    case emenu_game_quit:
+      y = MENU_Y[3];
       break;
   }
   mvaddstr(y, MENU_X-2, " "); //選択マーク
@@ -107,6 +106,9 @@ void Start_draw() {
       break;
     case emenu_start:
       y = MENU_Y[2];
+      break;
+    case emenu_game_quit:
+      y = MENU_Y[3];
       break;
   }
   mvaddstr(y, MENU_X-2, "*"); //選択マーク
