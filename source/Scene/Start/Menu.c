@@ -5,6 +5,7 @@
 #include <locale.h>
 
 #include "Menu.h"
+#include "../../Util.h"
 
 static const int MENU_Y[4] = {10, 11, 12, 13};
 static const int MENU_X = 20;
