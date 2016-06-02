@@ -1,7 +1,6 @@
 /* メニュークラス */
 typedef struct {
   int now_select;
-  int before_select;
 } Start_Menu;
 
 Start_Menu* Start_Menu_new();

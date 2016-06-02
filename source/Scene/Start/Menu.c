@@ -25,7 +25,6 @@ Start_Menu* Start_Menu_new() {
     exit(1);
   }
   this->now_select = emenu_game_start;
-  this->before_select = emenu_game_start;
   return this;
 }
 
@@ -35,11 +34,9 @@ void Start_Menu_destroy(Start_Menu* this) {
 
 void Start_Menu_update(Start_Menu* this, int key) {
   if (key == KEY_DOWN) {
-    this->before_select = this->now_select;
     this->now_select = (this->now_select + 1) % emenu_num;
   }
   if (key == KEY_UP) {
-    this->before_select = this->now_select;
     this->now_select = (this->now_select + (emenu_num - 1)) % emenu_num;
   } 
   if (key == ' ') {
@@ -75,12 +72,6 @@ int Start_Menu_y(int place) {
 
 void Start_Menu_draw(Start_Menu* this) {
 
-  int width;
-  int height;
-
-  getmaxyx(stdscr, height, width);
-  mvprintw(10, 10, "height:%d, width:%d", height, width);
-
   mvaddstr(29, 30, "メニュー画面です。");
   mvaddstr(30, 30, "↑ ↓ キーで選択、スペースキーで決定。");
   
@@ -89,7 +80,6 @@ void Start_Menu_draw(Start_Menu* this) {
   mvaddstr(MENU_Y[2], MENU_X, "ヘルプ");
   mvaddstr(MENU_Y[3], MENU_X, "ゲーム終了");
 
-  mvaddstr(Start_Menu_y(this->before_select), MENU_X-2, " ");
   mvaddstr(Start_Menu_y(this->now_select), MENU_X-2, "*");
 }
 

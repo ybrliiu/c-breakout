@@ -4,6 +4,7 @@
 #include <string.h>
 #include <locale.h>
 
+#include "Frame.h"
 #include "Scene.h"
 
 void BreakOut_quit() {
@@ -29,8 +30,8 @@ void BreakOut_setup() {
   BreakOut_check_screen_size();
   curs_set(0);
   timeout(0);  /* キー入力も待ち時間 */
-  keypad(stdscr, TRUE);
-  border('|', '|', '-', '-', '0', '0', '0', '0');
+  keypad(stdscr, TRUE); /* 特殊キーマクロセット */
+  Frame_init(); /* フレーム初期化 */
 }
 
 int main() {
@@ -40,7 +41,9 @@ int main() {
 
   while (1) {
     Scene_update();
+    erase();
     Scene_draw();
+    Frame_adjust();
   }
 
   Scene_final();
