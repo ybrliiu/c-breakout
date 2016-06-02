@@ -7,6 +7,8 @@ typedef enum {
   eScene_none,
 } eScene_manager;
 
+void Scene_init();
+void Scene_final();
 void Scene_update();
 void Scene_draw();
 void Scene_change(eScene_manager next);

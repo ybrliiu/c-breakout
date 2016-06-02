@@ -23,12 +23,14 @@ void BreakOut_quit() {
 int main() {
 
   BreakOut_setup();
+  Scene_init();
 
   while (1) {
     Scene_update();
     Scene_draw();
   }
 
+  Scene_final();
   BreakOut_quit();
   return 0;
 }
