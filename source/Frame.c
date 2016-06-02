@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <time.h>
 
-#define FRAME 16666 /* 1/60秒 */
+#define FRAME 16666 /* 1/60秒, =1000000/60 */
 
 static struct timespec end_time;
 static struct timespec start_time;

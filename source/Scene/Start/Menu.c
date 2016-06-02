@@ -8,7 +8,7 @@
 #include "../../Util.h"
 
 static const int MENU_Y[4] = {10, 11, 12, 13};
-static const int MENU_X = 30;
+static const int MENU_X = 50;
 
 typedef enum {
   emenu_game_start,
@@ -21,8 +21,7 @@ typedef enum {
 Start_Menu* Start_Menu_new() {
   Start_Menu* this = malloc( sizeof(Start_Menu) );
   if (this == NULL) {
-    endwin();
-    exit(1);
+    BreakOut_exit();
   }
   this->now_select = emenu_game_start;
   return this;
@@ -72,13 +71,12 @@ int Start_Menu_y(int place) {
 
 void Start_Menu_draw(Start_Menu* this) {
 
-  mvaddstr(29, 30, "メニュー画面です。");
-  mvaddstr(30, 30, "↑ ↓ キーで選択、スペースキーで決定。");
+  mvaddstr(30, MENU_X, "↑ ↓ キーで選択、スペースキーで決定。");
   
   mvaddstr(MENU_Y[0], MENU_X, "ゲームスタート");
-  mvaddstr(MENU_Y[1], MENU_X, "スコア");
-  mvaddstr(MENU_Y[2], MENU_X, "ヘルプ");
-  mvaddstr(MENU_Y[3], MENU_X, "ゲーム終了");
+  mvaddstr(MENU_Y[1], MENU_X, "　　スコア　　");
+  mvaddstr(MENU_Y[2], MENU_X, "　　ヘルプ　　");
+  mvaddstr(MENU_Y[3], MENU_X, "　ゲーム終了　");
 
   mvaddstr(Start_Menu_y(this->now_select), MENU_X-2, "*");
 }
