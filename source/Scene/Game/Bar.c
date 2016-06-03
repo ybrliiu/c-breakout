@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include <ncurses.h>
 #include <locale.h>
 
@@ -11,13 +12,23 @@ Game_Bar* Game_Bar_new() {
   if (this == NULL) {
     BreakOut_exit();
   }
-  this->x = BREAKOUT_WIDTH / 2;
+  this->shape = "%%%%%%%";
+  this->width = strlen(this->shape);
+  this->x = BreakOut_centered_str_x(this->shape);
   this->y = 28;
   return this;
 }
 
+int Game_Bar_get_y(Game_Bar* this) {
+  return this->y;
+}
+
 void Game_Bar_destroy(Game_Bar* this) {
   free(this);
+}
+
+int Game_Bar_default_ball_place(Game_Bar* this) {
+  return this->x + (this->width / 2) + 1;
 }
 
 void Game_Bar_update(Game_Bar* this, int key) {
@@ -27,11 +38,9 @@ void Game_Bar_update(Game_Bar* this, int key) {
   if (key == KEY_RIGHT) {
     this->x++;
   } 
-  if (key == ' ') {
-  }
 }
 
 void Game_Bar_draw(Game_Bar* this) {
-  mvaddstr(this->y, this->x, "%%%%%%%");
+  mvaddstr(this->y, this->x, this->shape);
 }
 

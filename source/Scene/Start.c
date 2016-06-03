@@ -1,11 +1,12 @@
+#include <ncurses.h>
+#include <locale.h>
+
 #include "Start.h"
 #include "Start/Menu.h"
 #include "Start/Title.h"
 #include "../Util.h"
 
-
 Start_Menu* Menu;
-
 
 void Start_init() {
   Start_Title_init();
