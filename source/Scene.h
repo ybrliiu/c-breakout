@@ -1,3 +1,5 @@
+/* シーン管理部 */
+
 typedef enum {
   eScene_start,
   eScene_game,
