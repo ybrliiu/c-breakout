@@ -1,5 +1,6 @@
 #include "Start.h"
 #include "Start/Menu.h"
+#include "Start/Title.h"
 
 #include <stdlib.h>
 #include <ncurses.h>
@@ -29,8 +30,7 @@ void Start_update() {
 }
 
 void Start_draw() {
-  
   Start_Menu_draw(Menu);
-
+  Start_Title_draw();
 }
 

@@ -1,7 +1,10 @@
 CC = gcc
-OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o source/Scene/Start.o source/Scene/Start/Menu.o
+OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o source/Scene/Start.o source/Scene/Start/Menu.o source/Scene/Start/Title.o
 
 all: Breakout
+
+source/Scene/Start/Title.o: source/Scene/Start/Title.c source/Scene/Start/Title.h
+	$(CC) -c -o source/Scene/Start/Title.o source/Scene/Start/Title.c
 
 source/Scene/Start/Menu.o: source/Scene/Start/Menu.c source/Scene/Start/Menu.h
 	$(CC) -c -o source/Scene/Start/Menu.o source/Scene/Start/Menu.c
