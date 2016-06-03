@@ -4,6 +4,7 @@
 #include <string.h>
 #include <locale.h>
 
+#include "Config.h"
 #include "Frame.h"
 #include "Scene.h"
 
@@ -15,7 +16,7 @@ void BreakOut_quit() {
 void BreakOut_check_screen_size() {
   int height, width;
   getmaxyx(stdscr, height, width);
-  if (width < 100 || height < 30) {
+  if (width < BREAKOUT_WIDTH || height < BREAKOUT_HEIGHT) {
     BreakOut_quit();
     fprintf(stderr, "画面サイズを30×100以上にして起動してください。\n");
     exit(1);

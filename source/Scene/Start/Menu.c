@@ -1,14 +1,11 @@
 #include <stdlib.h>
 #include <ncurses.h>
-#include <unistd.h>
-#include <string.h>
 #include <locale.h>
 
 #include "Menu.h"
 #include "../../Util.h"
 
-static const int MENU_Y[4] = {10, 11, 12, 13};
-static const int MENU_X = 50;
+static const int MENU_Y[4] = {16, 17, 18, 19};
 
 typedef enum {
   emenu_game_start,
@@ -71,13 +68,21 @@ int Start_Menu_y(int place) {
 
 void Start_Menu_draw(Start_Menu* this) {
 
-  mvaddstr(30, MENU_X, "↑ ↓ キーで選択、スペースキーで決定。");
-  
-  mvaddstr(MENU_Y[0], MENU_X, "ゲームスタート");
-  mvaddstr(MENU_Y[1], MENU_X, "　　スコア　　");
-  mvaddstr(MENU_Y[2], MENU_X, "　　ヘルプ　　");
-  mvaddstr(MENU_Y[3], MENU_X, "　ゲーム終了　");
+  char *menu[4] = {
+    "ゲームスタート",
+    "　　スコア　　",
+    "　　ヘルプ　　",
+    "　ゲーム終了　",
+  };
+  int menu_x = BreakOut_centered_unicode_str_x(menu[0]);
+  int i;
+  char explain[] = "↑ ↓ キーで選択、スペースキーで決定。";
 
-  mvaddstr(Start_Menu_y(this->now_select), MENU_X-2, "*");
+  for (i = 0; i < 4; i++) {
+    mvaddstr(MENU_Y[i], menu_x, menu[i]);
+  }
+  mvaddstr(Start_Menu_y(this->now_select), menu_x - 2, "*");
+
+  mvaddstr(26, BreakOut_centered_unicode_str_x(explain), explain);
 }
 

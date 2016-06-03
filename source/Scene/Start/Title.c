@@ -1,19 +1,27 @@
-#include <stdlib.h>
-#include <string.h>
 #include <ncurses.h>
+#include <locale.h>
 
 #include "Title.h"
+#include "../../Config.h"
+
+static int Title_x = 0;
+static const char *Title[7] = {
+  "@@@@@    @@@@@@   @@@@@@@     @@     @    @         @@@@    @      @  @@@@@@@@",
+  "@    @   @     @  @          @  @    @   @         @    @   @      @     @@   ",
+  "@     @  @     @  @          @  @    @  @         @      @  @      @     @@   ",
+  "@@@@@@   @@@@@@   @@@@@@@   @    @   @@@          @      @  @      @     @@   ",
+  "@     @  @   @    @         @@@@@@   @  @         @      @  @      @     @@   ",
+  "@    @   @    @   @        @      @  @   @         @    @    @    @      @@   ",
+  "@@@@@    @     @  @@@@@@@  @      @  @    @         @@@@      @@@@       @@   ",
+};
+
+void Start_Title_init() {
+  Title_x = BreakOut_centered_str_x(Title[0]);
+}
 
 void Start_Title_draw() {
-  mvaddstr(0, 20, "@@@@@    @@@@@@   @@@@@@@     @@     @    @         @@@@    @      @  @@@@@@@@");
-  mvaddstr(1, 20, "@    @   @     @  @          @  @    @   @         @    @   @      @     @@   ");
-  mvaddstr(2, 20, "@     @  @     @  @          @  @    @  @         @      @  @      @     @@   ");
-  mvaddstr(3, 20, "@@@@@@   @@@@@@   @@@@@@@   @    @   @@@          @      @  @      @     @@   ");
-  mvaddstr(4, 20, "@     @  @   @    @         @@@@@@   @  @         @      @  @      @     @@   ");
-  mvaddstr(5, 20, "@    @   @    @   @        @      @  @   @         @    @    @    @      @@   ");
-  mvaddstr(6, 20, "@@@@@    @     @  @@@@@@@  @      @  @    @         @@@@      @@@@       @@   ");
-
-  char tmp[] = "@@@@@    @     @  @@@@@@@  @      @  @    @         @@@@      @@@@       @@   ";
-  int length = strlen(tmp);
-  mvprintw(7, 20, "strlen: %d", length);
+  int i;
+  for (i = 0; i <= 7; i++) {
+    mvaddstr(i + 4, Title_x, Title[i]);
+  }
 }

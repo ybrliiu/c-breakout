@@ -1,2 +1,0 @@
-#define BREAKOUT_WIDTH 30
-#define BREAKOUT_HEIGHT 100
