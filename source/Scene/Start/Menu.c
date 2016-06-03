@@ -4,6 +4,7 @@
 
 #include "Menu.h"
 #include "../../Util.h"
+#include "../../Scene.h"
 
 static const int MENU_Y[4] = {16, 17, 18, 19};
 
@@ -37,6 +38,9 @@ void Start_Menu_update(Start_Menu* this, int key) {
   } 
   if (key == ' ') {
     switch (this->now_select) {
+      case emenu_game_start: 
+        Scene_change(eScene_game);
+        break;
       case emenu_game_quit: 
         BreakOut_exit();
         break;

@@ -17,7 +17,7 @@ void Start_final(){
 }
 
 void Start_update() {
-  int key = getch();
+  int key = getch(); /* getch()関数をシーンのどこかで使わなければ画面表示されないようだ。。 */
   Start_Menu_update(Menu, key);
 }
 
