@@ -4,6 +4,8 @@ OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o \
 	source/Scene/Game.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
 	source/Scene/Help.o \
 	source/Scene/Score.o \
+# glibcのバージョンが2.14以前の場合、time.h を使う際に-lrtを指定
+LIBS = -lncursesw -lm -lrt
 
 all: Breakout
 
@@ -50,7 +52,7 @@ source/main.o: source/main.c
 
 # 
 Breakout: $(OBJS)
-	$(CC) -o Breakout $(OBJS) -lncursesw	
+	$(CC) -o Breakout $(OBJS) $(LIBS)
 
 clean:
 	rm Breakout $(OBJS) 

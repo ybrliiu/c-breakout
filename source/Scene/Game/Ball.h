@@ -1,8 +1,9 @@
 /* ボールクラス */
 typedef struct {
-  int x;
-  int y;
-  int y_x10;
+  double x;
+  double y;
+  double speed;
+  double radian;
   int on_the_bar;
   char *shape;
 } Game_Ball;
