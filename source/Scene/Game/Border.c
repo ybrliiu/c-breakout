@@ -14,7 +14,7 @@ void Game_Border_init() {
   for (y = 0; y < BREAKOUT_HEIGHT; y++) {
     for (x = 0; x < BREAKOUT_WIDTH; x++) {
       if (y == 0 || y == BREAKOUT_HEIGHT - 1 || x == 0 || x == BREAKOUT_WIDTH - 1) {
-        hit_map[y][x] = 1;
+        hit_map[y][x] = GAME_HIT_WALL;
       }
     }
   }

@@ -79,16 +79,28 @@ int Game_Bar_can_move(Game_Bar* this, int next_x) {
   return can_move;
 }
 
+void Game_Bar_place_regist(Game_Bar* this) {
+
+  int i;
+  array_2D hit_map = Game_Hit_get_map();
+
+  for (i = this->x; i <= Game_Bar_right_tip(this); i++) {
+    hit_map[this->y][i] = GAME_HIT_BAR;
+  }
+}
+
 void Game_Bar_update(Game_Bar* this, int key) {
   switch (key) {
     case KEY_LEFT:
       if ( Game_Bar_can_move(this, this->x - 1) ) {
         this->x--;
+        Game_Bar_place_regist(this);
       }
       break;
     case KEY_RIGHT:
       if ( Game_Bar_can_move(this, Game_Bar_right_tip(this) + 1) ) {
         this->x++;
+        Game_Bar_place_regist(this);
       }
       break;
   } 
