@@ -70,7 +70,7 @@ void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar) {
         }
         break;
       case KEY_RIGHT:
-        if ( Game_Bar_can_move(bar, Game_Bar_get_x(bar) + Game_Bar_get_width(bar) + 1) ) {
+        if ( Game_Bar_can_move(bar, Game_Bar_right_tip(bar) + 1) ) {
           this->x++;
         }
         break;

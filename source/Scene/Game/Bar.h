@@ -18,6 +18,7 @@ int Game_Bar_get_y(Game_Bar* this);
 int Game_Bar_get_x(Game_Bar* this);
 double* Game_Bar_get_bound_angles(Game_Bar* this);
 int Game_Bar_default_ball_place(Game_Bar* this);
+int Game_Bar_right_tip(Game_Bar* this);
 
 void Game_Bar_update(Game_Bar* this, int key);
 void Game_Bar_draw(Game_Bar* this);

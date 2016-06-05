@@ -63,8 +63,8 @@ int Game_Bar_default_ball_place(Game_Bar* this) {
   return this->x + (this->width / 2) + 1;
 }
 
-int Game_bar_right_tip(Game_Bar* this) {
-  return this->x + this->width;
+int Game_Bar_right_tip(Game_Bar* this) {
+  return this->x + this->width - 1;
 }
 
 int Game_Bar_can_move(Game_Bar* this, int next_x) {
@@ -87,7 +87,7 @@ void Game_Bar_update(Game_Bar* this, int key) {
       }
       break;
     case KEY_RIGHT:
-      if ( Game_Bar_can_move(this, this->x + 1 + this->width) ) {
+      if ( Game_Bar_can_move(this, Game_Bar_right_tip(this) + 1) ) {
         this->x++;
       }
       break;
