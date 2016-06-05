@@ -27,9 +27,12 @@ void Game_final() {
 }
 
 void Game_update() {
+
   int key = getch(); /* getch()しないとシーンの表示がなされません */
-  Game_Bar_update(Bar, key);
+
+  /* ボールとバーの順番逆だと上手く行かない */
   Game_Ball_update(Ball, key, Bar);
+  Game_Bar_update(Bar, key);
 }
 
 void Game_draw() {
