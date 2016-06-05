@@ -1,5 +1,8 @@
 /* シーン管理部 */
 
+#ifndef SCENE_H
+#define SCENE_H
+
 typedef enum {
   eScene_start,
   eScene_game,
@@ -14,3 +17,5 @@ void Scene_final();
 void Scene_update();
 void Scene_draw();
 void Scene_change(eScene_manager next);
+
+#endif

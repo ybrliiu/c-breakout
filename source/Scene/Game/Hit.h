@@ -1,3 +1,7 @@
+
+#ifndef GAME_HIT_H
+#define GAME_HIT_H
+
 /* 当たり判定のマップ情報を格納しているクラス */
 
 #include "../../Config.h"
@@ -10,3 +14,6 @@
 typedef int (*array_2D)[BREAKOUT_WIDTH]; /* 二次元配列のポインタを返却するARRAY_2D型 */
 
 array_2D Game_Hit_get_map();
+
+
+#endif

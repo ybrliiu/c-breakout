@@ -1,3 +1,7 @@
+
+#ifndef GAME_BLOCK_H
+#define GAME_BLOCK_H
+
 /* ブロッククラス */
 
 typedef struct {
@@ -12,3 +16,6 @@ void Game_Block_destroy(Game_Block* this);
 
 void Game_Block_update(Game_Block* this, int key);
 void Game_Block_draw(Game_Block* this);
+
+
+#endif
