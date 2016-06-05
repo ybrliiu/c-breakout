@@ -4,6 +4,8 @@
 #include "Game.h"
 #include "Game/Bar.h"
 #include "Game/Ball.h"
+#include "Game/Hit.h"
+#include "Game/Border.h"
 #include "../Util.h"
 
 Game_Bar* Bar;
@@ -22,11 +24,11 @@ void Game_final() {
 void Game_update() {
   int key = getch(); /* getch()しないとシーンの表示がなされません */
   Game_Bar_update(Bar, key);
-  Game_Ball_update(Ball, key, Bar);
+  Game_Ball_update(Ball, key);
 }
 
 void Game_draw() {
-  BreakOut_draw_border();
+  Game_Border_draw();
   Game_Bar_draw(Bar);
   Game_Ball_draw(Ball);
 }

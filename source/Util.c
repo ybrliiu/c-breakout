@@ -25,12 +25,12 @@ int BreakOut_centered_unicode_str_x(char *str) {
 
 void BreakOut_draw_border() {
   move(0, 0);
-  hline(ACS_HLINE, BREAKOUT_WIDTH);
+  hline(ACS_HLINE, BREAKOUT_WIDTH - 1);
   move(0, 0);
-  vline(ACS_VLINE, BREAKOUT_HEIGHT + 1);
-  move(0, BREAKOUT_WIDTH);
-  vline(ACS_VLINE, BREAKOUT_HEIGHT + 1);
-  move(BREAKOUT_HEIGHT, 0);
-  hline(ACS_HLINE, BREAKOUT_WIDTH);
+  vline(ACS_VLINE, BREAKOUT_HEIGHT);
+  move(0, BREAKOUT_WIDTH - 1);
+  vline(ACS_VLINE, BREAKOUT_HEIGHT);
+  move(BREAKOUT_HEIGHT - 1, 1);
+  hline(ACS_HLINE, BREAKOUT_WIDTH - 2);
 }
 
