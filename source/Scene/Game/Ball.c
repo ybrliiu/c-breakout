@@ -5,6 +5,7 @@
 
 #include "Bar.h"
 #include "Ball.h"
+#include "Hit.h"
 #include "../../Config.h"
 
 void Game_Ball_set_radian(Game_Ball* this, Game_Bar* bar) {
@@ -34,9 +35,27 @@ void Game_Ball_destroy(Game_Ball* this) {
   free(this);
 }
 
+int Game_Ball_can_move(Game_Ball* this, double next_y, double next_x) {
+
+  int next_y_int = (int) next_y;
+  int next_x_int = (int) next_x;
+  array_2D hit_map = Game_Hit_get_map();
+  int can_move = 1;
+
+  if (hit_map[next_y_int][next_x_int] == GAME_HIT_WALL) {
+    can_move = 0;
+  }
+
+  return can_move;
+}
+
 void Game_Ball_move(Game_Ball* this) {
-  this->y -= sin(this->radian) * this->speed;
-  this->x += cos(this->radian) * this->speed;
+  double move_y = sin(this->radian) * this->speed;
+  double move_x = cos(this->radian) * this->speed;
+  if ( Game_Ball_can_move(this, this->y + move_y, this->x + move_x) ) {
+    this->y -= move_y;
+    this->x += move_x;
+  }
 }
 
 void Game_Ball_update(Game_Ball* this, int key) {

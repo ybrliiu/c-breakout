@@ -2,16 +2,17 @@
 #include <locale.h>
 
 #include "Game.h"
+#include "Game/Border.h"
+#include "Game/Player.h"
+#include "Game/Block.h"
 #include "Game/Bar.h"
 #include "Game/Ball.h"
-#include "Game/Hit.h"
-#include "Game/Border.h"
-#include "../Util.h"
 
 Game_Bar* Bar;
 Game_Ball* Ball;
 
 void Game_init() {
+  Game_Border_init();
   Bar = Game_Bar_new();
   Ball = Game_Ball_new(Bar);
 }

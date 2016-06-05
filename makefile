@@ -1,7 +1,8 @@
 CC = gcc
 OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o \
  	source/Scene/Start.o source/Scene/Start/Menu.o source/Scene/Start/Title.o \
-	source/Scene/Game.o source/Scene/Game/Border.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o source/Scene/Game/Hit.o \
+	source/Scene/Game.o source/Scene/Game/Border.o source/Scene/Game/Player.o source/Scene/Game/Block.o source/Scene/Game/Hit.o \
+    source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
 	source/Scene/Help.o \
 	source/Scene/Score.o \
 # glibcのバージョンが2.14以前の場合、time.h を使う際に-lrtを指定
@@ -23,14 +24,20 @@ source/Scene/Start.o: source/Scene/Start.c source/Scene/Start.h
 source/Scene/Game/Border.o: source/Scene/Game/Border.c source/Scene/Game/Border.h
 	$(CC) -c -o source/Scene/Game/Border.o source/Scene/Game/Border.c
 
+source/Scene/Game/Player.o: source/Scene/Game/Player.c source/Scene/Game/Player.h
+	$(CC) -c -o source/Scene/Game/Player.o source/Scene/Game/Player.c
+
+source/Scene/Game/Block.o: source/Scene/Game/Block.c source/Scene/Game/Block.h
+	$(CC) -c -o source/Scene/Game/Block.o source/Scene/Game/Block.c
+
 source/Scene/Game/Hit.o: source/Scene/Game/Hit.c source/Scene/Game/Hit.h
 	$(CC) -c -o source/Scene/Game/Hit.o source/Scene/Game/Hit.c
 
-source/Scene/Game/Ball.o: source/Scene/Game/Ball.c source/Scene/Game/Ball.h
-	$(CC) -c -o source/Scene/Game/Ball.o source/Scene/Game/Ball.c
-
 source/Scene/Game/Bar.o: source/Scene/Game/Bar.c source/Scene/Game/Bar.h
 	$(CC) -c -o source/Scene/Game/Bar.o source/Scene/Game/Bar.c
+
+source/Scene/Game/Ball.o: source/Scene/Game/Ball.c source/Scene/Game/Ball.h
+	$(CC) -c -o source/Scene/Game/Ball.o source/Scene/Game/Ball.c
 
 source/Scene/Game.o: source/Scene/Game.c source/Scene/Game.h
 	$(CC) -c -o source/Scene/Game.o source/Scene/Game.c

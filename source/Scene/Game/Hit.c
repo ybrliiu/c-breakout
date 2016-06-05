@@ -1,18 +1,9 @@
-#include <stdlib.h>
-#include <ncurses.h>
-#include <locale.h>
-
-#include "Hit.h"
 #include "../../Config.h"
-#include "../../Util.h"
+#include "Hit.h"
 
 static int Hit_map[BREAKOUT_HEIGHT][BREAKOUT_WIDTH] = { {0} };
 
-void Game_Hit_init() {
+array_2D Game_Hit_get_map() {
+  return Hit_map;
 }
 
-void Game_Hit_final() {
-}
-
-void Game_Hit_update() {
-}
