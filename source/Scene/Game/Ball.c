@@ -35,46 +35,50 @@ void Game_Ball_destroy(Game_Ball* this) {
   free(this);
 }
 
-int Game_Ball_can_move(Game_Ball* this, double next_y, double next_x) {
+void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x) {
 
   int next_y_int = (int) next_y;
   int next_x_int = (int) next_x;
   array_2D hit_map = Game_Hit_get_map();
-  int can_move = 1;
 
   if (hit_map[next_y_int][next_x_int] == GAME_HIT_WALL) {
-    can_move = 0;
+    this->radian = (M_PI / 2) + this->radian;
   }
 
-  return can_move;
+}
+
+void Game_Ball_move_on_the_bar(Game_Ball* this, int key, Game_Bar* bar) {
+  switch (key) {
+    case ' ':
+      this->on_the_bar = 0;
+      break;
+    case KEY_LEFT:
+      if ( Game_Bar_can_move(bar, Game_Bar_get_x(bar) - 1) ) {
+        this->x--;
+      }
+      break;
+    case KEY_RIGHT:
+      if ( Game_Bar_can_move(bar, Game_Bar_right_tip(bar) + 1) ) {
+        this->x++;
+      }
+      break;
+  }
 }
 
 void Game_Ball_move(Game_Ball* this) {
+
   double move_y = sin(this->radian) * this->speed;
   double move_x = cos(this->radian) * this->speed;
-  if ( Game_Ball_can_move(this, this->y - move_y, this->x + move_x) ) {
-    this->y -= move_y;
-    this->x += move_x;
-  }
+
+  Game_Ball_collision_detection(this, this->y - move_y, this->x + move_x);
+    
+  this->y -= move_y;
+  this->x += move_x;
 }
 
 void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar) {
   if (this->on_the_bar) {
-    switch (key) {
-      case ' ':
-        this->on_the_bar = 0;
-        break;
-      case KEY_LEFT:
-        if ( Game_Bar_can_move(bar, Game_Bar_get_x(bar) - 1) ) {
-          this->x--;
-        }
-        break;
-      case KEY_RIGHT:
-        if ( Game_Bar_can_move(bar, Game_Bar_right_tip(bar) + 1) ) {
-          this->x++;
-        }
-        break;
-    }
+    Game_Ball_move_on_the_bar(this, key, bar);
   } else {
     Game_Ball_move(this);
   }
