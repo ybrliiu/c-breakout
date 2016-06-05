@@ -8,9 +8,8 @@
 #include "Game/Bar.h"
 #include "Game/Ball.h"
 
-/* 当たり判定のデバッグに使用(Game_Hit_draw())
+/* 当たり判定のデバッグに使用(Game_Hit_draw()) */
 #include "Game/Hit.h"
-*/
 
 Game_Bar* Bar;
 Game_Ball* Ball;

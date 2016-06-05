@@ -81,11 +81,16 @@ int Game_Bar_can_move(Game_Bar* this, int next_x) {
 
 void Game_Bar_place_regist(Game_Bar* this) {
 
-  int i;
+  int y = BREAKOUT_HEIGHT - 2;
+  int x;
   array_2D hit_map = Game_Hit_get_map();
 
-  for (i = this->x; i <= Game_Bar_right_tip(this); i++) {
-    hit_map[this->y][i] = GAME_HIT_BAR;
+  for (x = 1; x < BREAKOUT_WIDTH - 1; x++) {
+    hit_map[y][x] = GAME_HIT_NO;
+  }
+
+  for (x = this->x; x <= Game_Bar_right_tip(this); x++) {
+    hit_map[this->y][x] = GAME_HIT_BAR;
   }
 }
 

@@ -5,6 +5,7 @@
 
 #include "Ball.h"
 #include "../../Config.h"
+#include "../../Util.h"
 #include "Bar.h"
 #include "Hit.h"
 
@@ -41,12 +42,17 @@ void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x
   int next_x_int = (int) next_x;
   array_2D hit_map = Game_Hit_get_map();
 
-  if (hit_map[next_y_int][next_x_int] == GAME_HIT_WALL) {
-    this->radian = (M_PI / 2) + this->radian;
-  } else if (hit_map[next_y_int][next_x_int] == GAME_HIT_BAR) {
-    Game_Ball_update_radian(this, bar);
+  switch (hit_map[next_y_int][next_x_int]) {
+    case GAME_HIT_WALL:
+      this->radian = (M_PI / 2) + this->radian;
+      break;
+    case GAME_HIT_BAR:
+      Game_Ball_update_radian(this, bar);
+      break;
+    case GAME_HIT_BOTTOM:
+      BreakOut_exit();
+      break;
   }
-
 }
 
 void Game_Ball_move_on_the_bar(Game_Ball* this, int key, Game_Bar* bar) {
