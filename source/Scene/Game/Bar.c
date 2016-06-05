@@ -6,6 +6,7 @@
 #include "Bar.h"
 #include "../../Config.h"
 #include "../../Util.h"
+#include "Hit.h"
 
 double* Game_Bar_set_bound_angles(Game_Bar* this) {
 
@@ -62,13 +63,33 @@ int Game_Bar_default_ball_place(Game_Bar* this) {
   return this->x + (this->width / 2) + 1;
 }
 
+int Game_bar_right_tip(Game_Bar* this) {
+  return this->x + this->width;
+}
+
+int Game_Bar_can_move(Game_Bar* this, int next_x) {
+
+  array_2D hit_map = Game_Hit_get_map();
+  int can_move = 1;
+
+  if (hit_map[this->y][next_x] == GAME_HIT_WALL) {
+    can_move = 0;
+  }
+
+  return can_move;
+}
+
 void Game_Bar_update(Game_Bar* this, int key) {
   switch (key) {
     case KEY_LEFT:
-      this->x--;
+      if ( Game_Bar_can_move(this, this->x - 1) ) {
+        this->x--;
+      }
       break;
     case KEY_RIGHT:
-      this->x++;
+      if ( Game_Bar_can_move(this, this->x + 1 + this->width) ) {
+        this->x++;
+      }
       break;
   } 
 }

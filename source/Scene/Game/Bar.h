@@ -1,8 +1,8 @@
+/* バークラス */
 
 #ifndef GAME_BAR_H
 #define GAME_BAR_H
 
-/* バークラス */
 typedef struct {
   int x;
   int y;
@@ -21,7 +21,5 @@ int Game_Bar_default_ball_place(Game_Bar* this);
 
 void Game_Bar_update(Game_Bar* this, int key);
 void Game_Bar_draw(Game_Bar* this);
-
-
 
 #endif

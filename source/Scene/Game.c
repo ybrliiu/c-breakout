@@ -29,7 +29,7 @@ void Game_final() {
 void Game_update() {
   int key = getch(); /* getch()しないとシーンの表示がなされません */
   Game_Bar_update(Bar, key);
-  Game_Ball_update(Ball, key);
+  Game_Ball_update(Ball, key, Bar);
 }
 
 void Game_draw() {

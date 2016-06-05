@@ -3,10 +3,10 @@
 #include <locale.h>
 #include <math.h>
 
-#include "Bar.h"
 #include "Ball.h"
-#include "Hit.h"
 #include "../../Config.h"
+#include "Bar.h"
+#include "Hit.h"
 
 void Game_Ball_set_radian(Game_Ball* this, Game_Bar* bar) {
   double* bound_angles = Game_Bar_get_bound_angles(bar);
@@ -58,17 +58,21 @@ void Game_Ball_move(Game_Ball* this) {
   }
 }
 
-void Game_Ball_update(Game_Ball* this, int key) {
+void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar) {
   if (this->on_the_bar) {
     switch (key) {
       case ' ':
         this->on_the_bar = 0;
         break;
       case KEY_LEFT:
-        this->x--;
+        if ( Game_Bar_can_move(bar, Game_Bar_get_x(bar) - 1) ) {
+          this->x--;
+        }
         break;
       case KEY_RIGHT:
-        this->x++;
+        if ( Game_Bar_can_move(bar, Game_Bar_get_x(bar) + Game_Bar_get_width(bar) + 1) ) {
+          this->x++;
+        }
         break;
     }
   } else {

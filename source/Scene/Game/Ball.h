@@ -1,8 +1,10 @@
+/* ボールクラス */
 
 #ifndef GAME_BALL_H
 #define GAME_BALL_H
 
-/* ボールクラス */
+#include "Bar.h"
+
 typedef struct {
   double x;
   double y;
@@ -15,8 +17,7 @@ typedef struct {
 Game_Ball* Game_Ball_new(Game_Bar* bar);
 void Game_Ball_destroy(Game_Ball* this);
 
-void Game_Ball_update(Game_Ball* this, int key);
+void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar);
 void Game_Ball_draw(Game_Ball* this);
-
 
 #endif
