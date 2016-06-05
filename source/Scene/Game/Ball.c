@@ -52,7 +52,7 @@ int Game_Ball_can_move(Game_Ball* this, double next_y, double next_x) {
 void Game_Ball_move(Game_Ball* this) {
   double move_y = sin(this->radian) * this->speed;
   double move_x = cos(this->radian) * this->speed;
-  if ( Game_Ball_can_move(this, this->y + move_y, this->x + move_x) ) {
+  if ( Game_Ball_can_move(this, this->y - move_y, this->x + move_x) ) {
     this->y -= move_y;
     this->x += move_x;
   }
