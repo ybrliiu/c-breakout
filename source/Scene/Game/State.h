@@ -6,8 +6,8 @@
 typedef enum {
   eGame_State_play,
   eGame_State_pause,
-  eGame_State_over,
-  eGame_State_complete,   
+  eGame_State_game_over,
+  eGame_State_game_clear,   
   
   eGame_State_none,
 } eGame_State_manager;
