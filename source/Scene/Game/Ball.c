@@ -51,6 +51,9 @@ static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double
     case GAME_HIT_WALL:
       this->radian = (M_PI / 2) + this->radian;
       break;
+    case GAME_HIT_BLOCK:
+      this->radian = (M_PI / 2) + this->radian;
+      break;
     case GAME_HIT_BAR:
       Game_Ball_update_radian(this, bar);
       break;

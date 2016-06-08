@@ -3,32 +3,55 @@
 
 #define BLOCK_NUM_WIDTH 5
 #define BLOCK_NUM_HEIGHT 2
+#define BLOCK_NUM BLOCK_NUM_WIDTH * BLOCK_NUM_HEIGHT
 
-static Game_Block* Blocks[BLOCK_SUM];
+static Game_Block* Blocks[BLOCK_NUM];
+static const int BLOCK_SPACE = BREAKOUT_WIDTH / BLOCK_NUM_WIDTH;
 
-static int BlockManager_first_x() {
+static int Game_BlockManager_space_around_block() {
 
   Game_Block* example = Game_Block_new(0, 0);
   int width = Game_Block_get_width(example);
-  int block_space = BREAKOUT_WIDTH / BLOCK_NUM_WIDTH;
-  return BREAKOUT_WIDTH / BLOCK_NUM_WIDTH;
+  Game_Block_destroy(example);
+
+  return (BLOCK_SPACE - width) / 2;
 }
 
-void BlockManager_init() {
+void Game_BlockManager_init() {
 
   int i, y, x;
-  int first_x = BREAKOUT_WIDTH / BLOCK_NUM_WIDTH;
+  int block_num = 0;
+  int block_x = Game_BlockManager_space_around_block();
 
-  for (i = 0; i < BLOCK_SUM; i++) {
-    Game_Block_new();
+  for (y = 1; y <= BLOCK_NUM_HEIGHT; y++) {
+    for (x = 0; x < BREAKOUT_WIDTH; x += BLOCK_SPACE) {
+      Blocks[block_num] = Game_Block_new(5 + (y * 4), x + block_x);
+      block_num++;
+    }
+  }
+
+}
+
+void Game_BlockManager_final() {
+  int i;
+  for (i = 0; i < BLOCK_NUM; i++) {
+    Game_Block_destroy(Blocks[i]);
   }
 }
 
-void BlockManager_final() {
+Game_Block* Game_BlockManager_get_block(int y, int x) {
 }
 
-void BlockManager_update() {
+void Game_BlockManager_update() {
+  int i;
+  for (i = 0; i < BLOCK_NUM; i++) {
+    Game_Block_update(Blocks[i]);
+  }
 }
 
-void BlockManager_draw() {
+void Game_BlockManager_draw() {
+  int i;
+  for (i = 0; i < BLOCK_NUM; i++) {
+    Game_Block_draw(Blocks[i]);
+  }
 }

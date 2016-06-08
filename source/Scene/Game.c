@@ -7,7 +7,7 @@
 #include "Game/Over.h"
 #include "Game/Border.h"
 #include "Game/Player.h"
-#include "Game/Block.h"
+#include "Game/BlockManager.h"
 #include "Game/Bar.h"
 #include "Game/Ball.h"
 
@@ -25,6 +25,7 @@ void Game_init() {
   Game_Over_init();
   Game_Border_init();
   Player = Game_Player_new();
+  Game_BlockManager_init();
   Bar = Game_Bar_new();
   Ball = Game_Ball_new(Bar);
 }
@@ -32,6 +33,7 @@ void Game_init() {
 void Game_final() {
   Game_PauseMenu_destroy(Menu);
   Game_Player_destroy(Player);
+  Game_BlockManager_final();
   Game_Bar_destroy(Bar);
   Game_Ball_destroy(Ball);
 }
@@ -45,6 +47,7 @@ void Game_update() {
   switch (Game_State_now()) {
     case eGame_State_play:
       Game_Player_update(Player, key);
+      Game_BlockManager_update();
       /* ボールとバーの順番逆だと上手く行かない */
       Game_Ball_update(Ball, key, Bar, Player);
       Game_Bar_update(Bar, key);
@@ -62,6 +65,7 @@ void Game_draw() {
 
   Game_Border_draw();
   Game_Player_draw(Player);
+  Game_BlockManager_draw();
   Game_Bar_draw(Bar);
   Game_Ball_draw(Ball);
 

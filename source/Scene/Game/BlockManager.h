@@ -1,12 +1,12 @@
 /* ブロックオブジェクト管理クラス */
 
-#ifndef BLOCKMANAGER_H
-#define BLOCKMANAGER_H
+#ifndef GAME_BLOCKMANAGER_H
+#define GAME_BLOCKMANAGER_H
 
-void BlockManager_init();
-void BlockManager_final();
+void Game_BlockManager_init();
+void Game_BlockManager_final();
 
-void BlockManager_update();
-void BlockManager_draw();
+void Game_BlockManager_update();
+void Game_BlockManager_draw();
 
 #endif
