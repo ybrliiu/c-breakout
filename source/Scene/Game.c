@@ -5,6 +5,7 @@
 #include "Game/State.h"
 #include "Game/PauseMenu.h"
 #include "Game/Over.h"
+#include "Game/Clear.h"
 #include "Game/Border.h"
 #include "Game/Player.h"
 #include "Game/BlockManager.h"
@@ -23,6 +24,7 @@ void Game_init() {
   Game_State_init();
   Menu = Game_PauseMenu_new();
   Game_Over_init();
+  Game_Clear_init();
   Game_Border_init();
   Player = Game_Player_new();
   Game_BlockManager_init();
@@ -58,6 +60,9 @@ void Game_update() {
     case eGame_State_game_over:
       Game_Over_update();
       break;
+    case eGame_State_game_clear:
+      Game_Clear_update();
+      break;
   }
 }
 
@@ -75,6 +80,9 @@ void Game_draw() {
       break;
     case eGame_State_game_over:
       Game_Over_draw();
+      break;
+    case eGame_State_game_clear:
+      Game_Clear_draw();
       break;
   }
 

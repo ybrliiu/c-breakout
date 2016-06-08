@@ -58,6 +58,10 @@ int Game_Block_get_width(Game_Block* this) {
   return this->width;
 }
 
+int Game_Block_is_broken(Game_Block* this) {
+  return this->broken;
+}
+
 void Game_Block_break(Game_Block* this) {
   this->broken = 1;
   this->need_update = 1;

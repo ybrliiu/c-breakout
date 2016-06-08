@@ -25,6 +25,7 @@ Game_Block* Game_Block_new(int y, int x);
 void Game_Block_destroy(Game_Block* this);
 
 int Game_Block_get_width(Game_Block* this);
+int Game_Block_is_broken(Game_Block* this);
 void Game_Block_break(Game_Block* this);
 int Game_Block_is_collision(Game_Block* this, int y, int x);
 

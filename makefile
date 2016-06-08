@@ -2,7 +2,7 @@ CC = gcc
 OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o \
  	source/Scene/Start.o source/Scene/Start/Menu.o source/Scene/Start/Title.o \
 	source/Scene/Game.o source/Scene/Game/State.o \
-    source/Scene/Game/PauseMenu.o source/Scene/Game/Over.o \
+    source/Scene/Game/PauseMenu.o source/Scene/Game/Over.o source/Scene/Game/Clear.o \
     source/Scene/Game/Border.o source/Scene/Game/Player.o source/Scene/Game/Block.o source/Scene/Game/BlockManager.o \
       source/Scene/Game/Hit.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
 	source/Scene/Help.o \
@@ -44,8 +44,11 @@ source/Scene/Game/Bar.o: source/Scene/Game/Bar.c source/Scene/Game/Bar.h
 source/Scene/Game/Ball.o: source/Scene/Game/Ball.c source/Scene/Game/Ball.h
 	$(CC) -c -o source/Scene/Game/Ball.o source/Scene/Game/Ball.c
 
-source/Over/Game/Over.o: source/Over/Game/Over.c source/Over/Game/Over.h
-	$(CC) -c -o source/Over/Game/Over.o source/Over/Game/Over.c
+source/Scene/Game/Clear.o: source/Scene/Game/Clear.c source/Scene/Game/Clear.h
+	$(CC) -c -o source/Scene/Game/Clear.o source/Scene/Game/Clear.c
+
+source/Scene/Game/Over.o: source/Scene/Game/Over.c source/Scene/Game/Over.h
+	$(CC) -c -o source/Scene/Game/Over.o source/Scene/Game/Over.c
 
 source/PauseMenu/Game/PauseMenu.o: source/PauseMenu/Game/PauseMenu.c source/PauseMenu/Game/PauseMenu.h
 	$(CC) -c -o source/PauseMenu/Game/PauseMenu.o source/PauseMenu/Game/PauseMenu.c

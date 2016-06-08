@@ -9,6 +9,7 @@ void Game_BlockManager_init();
 void Game_BlockManager_final();
 
 Game_Block* Game_BlockManager_get_block(int y, int x);
+int Game_BlockManager_remain_blocks();
 
 void Game_BlockManager_update();
 void Game_BlockManager_draw();

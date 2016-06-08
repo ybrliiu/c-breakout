@@ -1,4 +1,3 @@
-#include "Block.h"
 #include "BlockManager.h"
 #include "../../Config.h"
 
@@ -52,6 +51,19 @@ Game_Block* Game_BlockManager_get_block(int y, int x) {
   }
 
   return block;
+}
+
+int Game_BlockManager_remain_blocks() {
+
+  int i;
+  int count = 0;
+
+  for (i = 0; i < BLOCK_NUM; i++) {
+    if (!Game_Block_is_broken(Blocks[i])) {
+      count++;
+    }
+  }
+  return count;
 }
 
 void Game_BlockManager_update() {

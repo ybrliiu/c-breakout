@@ -11,6 +11,7 @@
 #include "BlockManager.h"
 #include "Bar.h"
 #include "Hit.h"
+#include "State.h"
 
 static void Game_Ball_update_radian(Game_Ball* this, Game_Bar* bar) {
   double* bound_angles = Game_Bar_get_bound_angles(bar);
@@ -59,6 +60,9 @@ static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double
       Game_Block_break(block);
       Game_Player_score_up(player);
       this->radian = (M_PI / 2) + this->radian;
+      if (Game_BlockManager_remain_blocks() == 0) {
+        Game_State_change(eGame_State_game_clear);
+      }
       break;
     case GAME_HIT_BAR:
       Game_Ball_update_radian(this, bar);
