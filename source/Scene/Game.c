@@ -13,11 +13,13 @@
 /* 当たり判定のデバッグに使用(Game_Hit_draw()) */
 #include "Game/Hit.h"
 
+Game_State* State;
 Game_PauseMenu* Menu;
 Game_Bar* Bar;
 Game_Ball* Ball;
 
 void Game_init() {
+  State = Game_State_new();
   Game_Border_init();
   Menu = Game_PauseMenu_new();
   Bar = Game_Bar_new();
@@ -25,6 +27,7 @@ void Game_init() {
 }
 
 void Game_final() {
+  Game_State_destroy(State);
   Game_PauseMenu_destroy(Menu);
   Game_Bar_destroy(Bar);
   Game_Ball_destroy(Ball);
@@ -33,7 +36,7 @@ void Game_final() {
 void Game_update_game_state(int key) {
   switch (key) {
     case 'p':
-      Game_State_change(eGame_State_pause);
+      Game_State_change(State, eGame_State_pause);
       break;
   }
 }
@@ -44,14 +47,14 @@ void Game_update() {
   
   Game_update_game_state(key);
 
-  switch (Game_State_now()) {
+  switch (Game_State_now(State)) {
     case eGame_State_play:
       /* ボールとバーの順番逆だと上手く行かない */
       Game_Ball_update(Ball, key, Bar);
       Game_Bar_update(Bar, key);
       break;
     case eGame_State_pause:
-      Game_PauseMenu_update(Menu ,key);
+      Game_PauseMenu_update(Menu, key, State);
       break;
   }
 }
@@ -62,7 +65,7 @@ void Game_draw() {
   Game_Bar_draw(Bar);
   Game_Ball_draw(Ball);
 
-  if (Game_State_now() == eGame_State_pause) {
+  if (Game_State_now(State) == eGame_State_pause) {
     Game_PauseMenu_draw(Menu);
   }
 

@@ -10,7 +10,7 @@ typedef struct {
 Game_PauseMenu* Game_PauseMenu_new();
 void Game_PauseMenu_destroy(Game_PauseMenu* this);
 
-void Game_PauseMenu_update(Game_PauseMenu* this, int key);
+void Game_PauseMenu_update(Game_PauseMenu* this, int key, Game_State* state);
 void Game_PauseMenu_draw(Game_PauseMenu* this);
 
 #endif
