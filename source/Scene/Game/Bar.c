@@ -8,7 +8,7 @@
 #include "../../Util.h"
 #include "Hit.h"
 
-double* Game_Bar_set_bound_angles(Game_Bar* this) {
+static double* Game_Bar_set_bound_angles(Game_Bar* this) {
 
   int width = this->width + 1;
   double interval = (double) 180 / width;
@@ -26,6 +26,11 @@ double* Game_Bar_set_bound_angles(Game_Bar* this) {
   return bound_angles;
 }
 
+void Game_Bar_set_start_place(Game_Bar* this) {
+  this->x = BreakOut_centered_str_x(this->shape);
+  this->y = 28;
+}
+
 Game_Bar* Game_Bar_new() {
 
   Game_Bar* this = malloc( sizeof(Game_Bar) );
@@ -35,8 +40,7 @@ Game_Bar* Game_Bar_new() {
 
   this->shape = "%%%%%%%";
   this->width = strlen(this->shape);
-  this->x = BreakOut_centered_str_x(this->shape);
-  this->y = 28;
+  Game_Bar_set_start_place(this);
   this->bound_angles = Game_Bar_set_bound_angles(this);
 
   return this;

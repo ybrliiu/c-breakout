@@ -46,7 +46,7 @@ void Game_update() {
     case eGame_State_play:
       Game_Player_update(Player, key);
       /* ボールとバーの順番逆だと上手く行かない */
-      Game_Ball_update(Ball, key, Bar);
+      Game_Ball_update(Ball, key, Bar, Player);
       Game_Bar_update(Bar, key);
       break;
     case eGame_State_pause:

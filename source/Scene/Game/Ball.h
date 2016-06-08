@@ -17,7 +17,7 @@ typedef struct {
 Game_Ball* Game_Ball_new(Game_Bar* bar);
 void Game_Ball_destroy(Game_Ball* this);
 
-void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar);
+void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar, Game_Player* player);
 void Game_Ball_draw(Game_Ball* this);
 
 #endif

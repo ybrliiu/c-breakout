@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "../../Config.h"
 #include "../../Util.h"
+#include "State.h"
 #include "Hit.h"
 
 #define GAME_PLAYER_WALL_Y 2
@@ -39,6 +40,13 @@ Game_Player* Game_Player_new() {
 
 void Game_Player_destroy(Game_Player* this) {
   free(this);
+}
+
+void Game_Player_ball_drop_down(Game_Player* this) {
+  this->life--;
+  if (this->life < 1) {
+    Game_State_change(eGame_State_game_over);
+  }
 }
 
 void Game_Player_update(Game_Player* this, int key) {

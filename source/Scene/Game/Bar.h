@@ -14,6 +14,7 @@ typedef struct {
 Game_Bar* Game_Bar_new();
 void Game_Bar_destroy(Game_Bar* this);
 
+void Game_Bar_set_start_place(Game_Bar* this);
 int Game_Bar_get_y(Game_Bar* this);
 int Game_Bar_get_x(Game_Bar* this);
 double* Game_Bar_get_bound_angles(Game_Bar* this);

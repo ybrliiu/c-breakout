@@ -40,7 +40,7 @@ void Game_Over_draw() {
 
   mvaddstr(20, BreakOut_centered_unicode_str_x(explain), explain);
 
-  for (i = 0; i <= CHAR_HEIGHT; i++) {
+  for (i = 0; i < CHAR_HEIGHT; i++) {
     mvaddstr(i + 4, Title_x, Title[i]);
   }
 }

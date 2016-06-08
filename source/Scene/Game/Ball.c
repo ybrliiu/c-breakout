@@ -3,17 +3,24 @@
 #include <locale.h>
 #include <math.h>
 
+#include "Player.h"
 #include "Ball.h"
 #include "../../Config.h"
 #include "../../Util.h"
-#include "State.h"
 #include "Bar.h"
 #include "Hit.h"
 
-void Game_Ball_update_radian(Game_Ball* this, Game_Bar* bar) {
+static void Game_Ball_update_radian(Game_Ball* this, Game_Bar* bar) {
   double* bound_angles = Game_Bar_get_bound_angles(bar);
   double angle = bound_angles[(int) this->x - Game_Bar_get_x(bar)];
   this->radian = (angle / 180) * M_PI;
+}
+
+static void Game_Ball_set_start_place(Game_Ball* this, Game_Bar* bar) {
+  this->y = Game_Bar_get_y(bar) - 1;
+  this->x = Game_Bar_default_ball_place(bar) + 1;
+  this->on_the_bar = 1;
+  this->speed = 0.3;
 }
 
 Game_Ball* Game_Ball_new(Game_Bar* bar) {
@@ -24,10 +31,7 @@ Game_Ball* Game_Ball_new(Game_Bar* bar) {
   }
 
   this->shape = "O";
-  this->y = Game_Bar_get_y(bar) - 1;
-  this->x = Game_Bar_default_ball_place(bar) + 1;
-  this->on_the_bar = 1;
-  this->speed = 0.3;
+  Game_Ball_set_start_place(this, bar);
   Game_Ball_update_radian(this, bar);
 
   return this;
@@ -37,7 +41,7 @@ void Game_Ball_destroy(Game_Ball* this) {
   free(this);
 }
 
-void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x, Game_Bar* bar) {
+static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x, Game_Bar* bar, Game_Player* player) {
 
   int next_y_int = (int) next_y;
   int next_x_int = (int) next_x;
@@ -51,12 +55,26 @@ void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x
       Game_Ball_update_radian(this, bar);
       break;
     case GAME_HIT_BOTTOM:
-      Game_State_change(eGame_State_game_over);
+      Game_Player_ball_drop_down(player);
+      Game_Bar_set_start_place(bar);
+      Game_Ball_set_start_place(this, bar);
+      Game_Ball_update_radian(this, bar);
       break;
   }
 }
 
-void Game_Ball_move_on_the_bar(Game_Ball* this, int key, Game_Bar* bar) {
+static void Game_Ball_move(Game_Ball* this, Game_Bar* bar, Game_Player* player) {
+
+  double move_y = sin(this->radian) * this->speed;
+  double move_x = cos(this->radian) * this->speed;
+
+  Game_Ball_collision_detection(this, this->y - move_y, this->x + move_x, bar, player);
+    
+  this->y -= move_y;
+  this->x += move_x;
+}
+
+static void Game_Ball_move_on_the_bar(Game_Ball* this, int key, Game_Bar* bar) {
   switch (key) {
     case ' ':
       this->on_the_bar = 0;
@@ -74,22 +92,11 @@ void Game_Ball_move_on_the_bar(Game_Ball* this, int key, Game_Bar* bar) {
   }
 }
 
-void Game_Ball_move(Game_Ball* this, Game_Bar* bar) {
-
-  double move_y = sin(this->radian) * this->speed;
-  double move_x = cos(this->radian) * this->speed;
-
-  Game_Ball_collision_detection(this, this->y - move_y, this->x + move_x, bar);
-    
-  this->y -= move_y;
-  this->x += move_x;
-}
-
-void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar) {
+void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar, Game_Player* player) {
   if (this->on_the_bar) {
     Game_Ball_move_on_the_bar(this, key, bar);
   } else {
-    Game_Ball_move(this, bar);
+    Game_Ball_move(this, bar, player);
   }
 }
 
