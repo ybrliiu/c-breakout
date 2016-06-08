@@ -3,7 +3,8 @@ OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o \
  	source/Scene/Start.o source/Scene/Start/Menu.o source/Scene/Start/Title.o \
 	source/Scene/Game.o source/Scene/Game/State.o \
     source/Scene/Game/PauseMenu.o source/Scene/Game/Over.o \
-    source/Scene/Game/Border.o source/Scene/Game/Player.o source/Scene/Game/Block.o source/Scene/Game/Hit.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
+    source/Scene/Game/Border.o source/Scene/Game/Player.o source/Scene/Game/Block.o source/Scene/Game/BlockManager.o \
+      source/Scene/Game/Hit.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
 	source/Scene/Help.o \
 	source/Scene/Score.o \
 # glibcのバージョンが2.14以前の場合、time.h を使う際に-lrtを指定
@@ -27,6 +28,9 @@ source/Scene/Game/Border.o: source/Scene/Game/Border.c source/Scene/Game/Border.
 
 source/Scene/Game/Player.o: source/Scene/Game/Player.c source/Scene/Game/Player.h
 	$(CC) -c -o source/Scene/Game/Player.o source/Scene/Game/Player.c
+
+source/Scene/Game/BlockManager.o: source/Scene/Game/BlockManager.c source/Scene/Game/BlockManager.h
+	$(CC) -c -o source/Scene/Game/BlockManager.o source/Scene/Game/BlockManager.c
 
 source/Scene/Game/Block.o: source/Scene/Game/Block.c source/Scene/Game/Block.h
 	$(CC) -c -o source/Scene/Game/Block.o source/Scene/Game/Block.c

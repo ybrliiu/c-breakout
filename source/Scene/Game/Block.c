@@ -11,18 +11,26 @@
 static void Game_Block_init_hit_map(Game_Block* this) {
 
   array_2D hit_map = Game_Hit_get_map();
-  int i, j;
+  int y, x;
 
-  for (j = 0; j < this->height; j++) {
-    for (i = this->x; i <= this->x + this->width; i++) {
-      hit_map[this->y + j][i] = GAME_HIT_BLOCK;
+  for (y = 0; y < this->height; y++) {
+    for (x = this->x; x <= this->x + this->width; x++) {
+      hit_map[this->y + y][x] = GAME_HIT_BLOCK;
     }
   }
+}
+
+static void Game_Block_init_region(Game_Block* this) {
+  this->region->y1 = this->y;
+  this->region->x1 = this->x;
+  this->region->y2 = this->y + this->height - 1;
+  this->region->x2 = this->x + this->width;
 }
 
 Game_Block* Game_Block_new(int y, int x) {
 
   Game_Block* this = malloc( sizeof(Game_Block) );
+  this->region = malloc( sizeof(Game_Block_region) );
 
   if (this == NULL) {
     BreakOut_exit();
@@ -35,12 +43,14 @@ Game_Block* Game_Block_new(int y, int x) {
   this->height = 2;
   this->broken = 0;
   this->need_update = 0;
+  Game_Block_init_region(this);
   Game_Block_init_hit_map(this);
 
   return this;
 }
 
 void Game_Block_destroy(Game_Block* this) {
+  free(this->region);
   free(this);
 }
 
@@ -53,15 +63,21 @@ void Game_Block_break(Game_Block* this) {
   this->need_update = 1;
 }
 
+int Game_Block_is_collision(Game_Block* this, int y, int x) {
+  int check_y = (y >= this->region->y1 && y <= this->region->y2);
+  int check_x = (x >= this->region->x1 && x <= this->region->x2);
+  return (check_y && check_x);
+}
+
 void Game_Block_update(Game_Block* this) {
 
   array_2D hit_map = Game_Hit_get_map();
-  int i, j;
+  int y, x;
   
   if (this->need_update) {
-    for (j = 0; j < this->height; j++) {
-      for (i = this->x; i <= this->x + this->width; i++) {
-        hit_map[this->y + j][i] = GAME_HIT_NO;
+    for (y = 0; y < this->height; y++) {
+      for (x = this->x; x <= this->x + this->width; x++) {
+        hit_map[this->y + y][x] = GAME_HIT_NO;
       }
     }
     this->need_update = 0;
@@ -70,11 +86,11 @@ void Game_Block_update(Game_Block* this) {
 
 void Game_Block_draw(Game_Block* this) {
 
-  int i;
+  int y;
 
   if (!this->broken) {
-    for (i = 0; i < this->height; i++) {
-      mvaddstr(this->y + i, this->x, this->shape);
+    for (y = 0; y < this->height; y++) {
+      mvaddstr(this->y + y, this->x, this->shape);
     }
   }
 }

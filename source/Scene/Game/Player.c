@@ -49,6 +49,10 @@ void Game_Player_ball_drop_down(Game_Player* this) {
   }
 }
 
+void Game_Player_score_up(Game_Player* this) {
+  this->score += 100;
+}
+
 void Game_Player_update(Game_Player* this, int key) {
 
   this->frame_count++;

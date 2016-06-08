@@ -1,4 +1,5 @@
 #include "Block.h"
+#include "BlockManager.h"
 #include "../../Config.h"
 
 #define BLOCK_NUM_WIDTH 5
@@ -40,6 +41,17 @@ void Game_BlockManager_final() {
 }
 
 Game_Block* Game_BlockManager_get_block(int y, int x) {
+
+  int i;
+  Game_Block* block;
+
+  for (i = 0; i < BLOCK_NUM; i++) {
+    if (Game_Block_is_collision(Blocks[i], y, x)) {
+      return Blocks[i];
+    }
+  }
+
+  return block;
 }
 
 void Game_BlockManager_update() {

@@ -7,6 +7,8 @@
 #include "Ball.h"
 #include "../../Config.h"
 #include "../../Util.h"
+#include "Block.h"
+#include "BlockManager.h"
 #include "Bar.h"
 #include "Hit.h"
 
@@ -46,12 +48,16 @@ static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double
   int next_y_int = (int) next_y;
   int next_x_int = (int) next_x;
   array_2D hit_map = Game_Hit_get_map();
+  Game_Block* block;
 
   switch (hit_map[next_y_int][next_x_int]) {
     case GAME_HIT_WALL:
       this->radian = (M_PI / 2) + this->radian;
       break;
     case GAME_HIT_BLOCK:
+      block = Game_BlockManager_get_block(next_y_int, next_x_int);
+      Game_Block_break(block);
+      Game_Player_score_up(player);
       this->radian = (M_PI / 2) + this->radian;
       break;
     case GAME_HIT_BAR:
