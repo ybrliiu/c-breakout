@@ -6,6 +6,7 @@
 #include "Ball.h"
 #include "../../Config.h"
 #include "../../Util.h"
+#include "State.h"
 #include "Bar.h"
 #include "Hit.h"
 
@@ -50,7 +51,7 @@ void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x
       Game_Ball_update_radian(this, bar);
       break;
     case GAME_HIT_BOTTOM:
-      BreakOut_exit();
+      Game_State_change(eGame_State_game_over);
       break;
   }
 }

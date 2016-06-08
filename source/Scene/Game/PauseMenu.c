@@ -31,7 +31,7 @@ void Game_PauseMenu_destroy(Game_PauseMenu* this) {
   free(this);
 }
 
-void Game_PauseMenu_update(Game_PauseMenu* this, int key, Game_State* state) {
+void Game_PauseMenu_update(Game_PauseMenu* this, int key) {
   if (key == KEY_DOWN) {
     this->now_select = (this->now_select + 1) % emenu_sum;
   }
@@ -41,7 +41,7 @@ void Game_PauseMenu_update(Game_PauseMenu* this, int key, Game_State* state) {
   if (key == ' ') {
     switch (this->now_select) {
       case emenu_resume: 
-        Game_State_change(state, eGame_State_play);
+        Game_State_change(eGame_State_play);
         break;
       case emenu_return_title: 
         Scene_change(eScene_start);

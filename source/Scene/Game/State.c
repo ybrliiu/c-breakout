@@ -2,23 +2,24 @@
 
 #include "State.h"
 
-Game_State* Game_State_new() {
-  Game_State* this = malloc( sizeof(Game_State) );
-  if (this == NULL) {
-    BreakOut_exit();
+eGame_State_manager State;
+
+void Game_State_init() {
+  State = eGame_State_play;
+}
+
+void Game_State_update(int key) {
+  switch (key) {
+    case 'p':
+      Game_State_change(eGame_State_pause);
+      break;
   }
-  this->now = eGame_State_play;
-  return this;
 }
 
-void Game_State_destroy(Game_State* this) {
-  free(this);
+eGame_State_manager Game_State_now() {
+  return State;
 }
 
-eGame_State_manager Game_State_now(Game_State* this) {
-  return this->now;
-}
-
-void Game_State_change(Game_State* this, eGame_State_manager next) {
-  this->now = next;
+void Game_State_change(eGame_State_manager next) {
+  State = next;
 }

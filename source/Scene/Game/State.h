@@ -12,14 +12,11 @@ typedef enum {
   eGame_State_none,
 } eGame_State_manager;
 
-typedef struct {
-  eGame_State_manager now;
-} Game_State;
+void Game_State_init();
 
-Game_State* Game_State_new();
-void Game_State_destroy(Game_State* this);
+void Game_State_update(int key);
 
-eGame_State_manager Game_State_now(Game_State* this);
-void Game_State_change(Game_State* this, eGame_State_manager next);
+eGame_State_manager Game_State_now();
+void Game_State_change(eGame_State_manager next);
 
 #endif
