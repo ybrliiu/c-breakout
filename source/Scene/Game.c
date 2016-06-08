@@ -2,6 +2,7 @@
 #include <locale.h>
 
 #include "Game.h"
+#include "Game/State.h"
 #include "Game/Border.h"
 #include "Game/Player.h"
 #include "Game/Block.h"
@@ -25,13 +26,29 @@ void Game_final() {
   Game_Ball_destroy(Ball);
 }
 
+void Game_update_game_state(int key) {
+  switch (key) {
+    case 'p':
+      Game_State_change(eGame_State_pause);
+      break;
+  }
+}
+
 void Game_update() {
 
   int key = getch(); /* getch()しないとシーンの表示がなされません */
+  
+  Game_update_game_state(key);
 
-  /* ボールとバーの順番逆だと上手く行かない */
-  Game_Ball_update(Ball, key, Bar);
-  Game_Bar_update(Bar, key);
+  switch (Game_State_now()) {
+    case eGame_State_play:
+      /* ボールとバーの順番逆だと上手く行かない */
+      Game_Ball_update(Ball, key, Bar);
+      Game_Bar_update(Bar, key);
+      break;
+    case eGame_State_pause:
+      break;
+  }
 }
 
 void Game_draw() {
