@@ -3,6 +3,7 @@
 
 #include "Game.h"
 #include "Game/State.h"
+#include "Game/PauseMenu.h"
 #include "Game/Border.h"
 #include "Game/Player.h"
 #include "Game/Block.h"
@@ -12,16 +13,19 @@
 /* 当たり判定のデバッグに使用(Game_Hit_draw()) */
 #include "Game/Hit.h"
 
+Game_PauseMenu* Menu;
 Game_Bar* Bar;
 Game_Ball* Ball;
 
 void Game_init() {
   Game_Border_init();
+  Menu = Game_PauseMenu_new();
   Bar = Game_Bar_new();
   Ball = Game_Ball_new(Bar);
 }
 
 void Game_final() {
+  Game_PauseMenu_destroy(Menu);
   Game_Bar_destroy(Bar);
   Game_Ball_destroy(Ball);
 }
@@ -47,12 +51,19 @@ void Game_update() {
       Game_Bar_update(Bar, key);
       break;
     case eGame_State_pause:
+      Game_PauseMenu_update(Menu ,key);
       break;
   }
 }
 
 void Game_draw() {
+
   Game_Border_draw();
   Game_Bar_draw(Bar);
   Game_Ball_draw(Ball);
+
+  if (Game_State_now() == eGame_State_pause) {
+    Game_PauseMenu_draw(Menu);
+  }
+
 }

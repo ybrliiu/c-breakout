@@ -7,11 +7,13 @@
 #include "../../Util.h"
 #include "../../Scene.h"
 
-#define MENU_ITEM 4
+#define MENU_ITEM 2
 
 typedef enum {
   emenu_resume,
   emenu_return_title,
+
+  emenu_sum,
 } emenu;
 
 static const int MENU_Y[MENU_ITEM] = {16, 17};
@@ -31,10 +33,10 @@ void Game_PauseMenu_destroy(Game_PauseMenu* this) {
 
 void Game_PauseMenu_update(Game_PauseMenu* this, int key) {
   if (key == KEY_DOWN) {
-    this->now_select = (this->now_select + 1) % MENU_ITEM;
+    this->now_select = (this->now_select + 1) % emenu_sum;
   }
   if (key == KEY_UP) {
-    this->now_select = (this->now_select + (MENU_ITEM - 1)) % MENU_ITEM;
+    this->now_select = (this->now_select + (emenu_sum - 1)) % emenu_sum;
   } 
   if (key == ' ') {
     switch (this->now_select) {
