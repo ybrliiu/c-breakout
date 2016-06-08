@@ -27,7 +27,7 @@ Game_Ball* Game_Ball_new(Game_Bar* bar) {
   this->y = Game_Bar_get_y(bar) - 1;
   this->x = Game_Bar_default_ball_place(bar) + 1;
   this->on_the_bar = 1;
-  this->speed = 0.15;
+  this->speed = 0.3;
   Game_Ball_update_radian(this, bar);
 
   return this;

@@ -15,6 +15,7 @@
 #include "Game/Hit.h"
 
 Game_PauseMenu* Menu;
+Game_Player* Player;
 Game_Bar* Bar;
 Game_Ball* Ball;
 
@@ -23,12 +24,14 @@ void Game_init() {
   Menu = Game_PauseMenu_new();
   Game_Over_init();
   Game_Border_init();
+  Player = Game_Player_new();
   Bar = Game_Bar_new();
   Ball = Game_Ball_new(Bar);
 }
 
 void Game_final() {
   Game_PauseMenu_destroy(Menu);
+  Game_Player_destroy(Player);
   Game_Bar_destroy(Bar);
   Game_Ball_destroy(Ball);
 }
@@ -41,6 +44,7 @@ void Game_update() {
 
   switch (Game_State_now()) {
     case eGame_State_play:
+      Game_Player_update(Player, key);
       /* ボールとバーの順番逆だと上手く行かない */
       Game_Ball_update(Ball, key, Bar);
       Game_Bar_update(Bar, key);
@@ -57,6 +61,7 @@ void Game_update() {
 void Game_draw() {
 
   Game_Border_draw();
+  Game_Player_draw(Player);
   Game_Bar_draw(Bar);
   Game_Ball_draw(Ball);
 
