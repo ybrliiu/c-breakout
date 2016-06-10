@@ -44,6 +44,27 @@ void Game_Ball_destroy(Game_Ball* this) {
   free(this);
 }
 
+static int Game_Ball_wall_angle(Game_Ball* this) {
+
+  int y_int = (int) this->y;
+  int x_int = (int) this->x;
+  array_2D hit_map = Game_Hit_get_map();
+
+  if (hit_map[y_int + 1][x_int] == GAME_HIT_WALL || hit_map[y_int + 1][x_int] == GAME_HIT_BLOCK) {
+    return 180;
+  } else if (hit_map[y_int][x_int + 1] == GAME_HIT_WALL || hit_map[y_int][x_int + 1] == GAME_HIT_BLOCK) {
+    return 90;
+  } else if (hit_map[y_int][x_int - 1] == GAME_HIT_WALL || hit_map[y_int][x_int - 1] == GAME_HIT_BLOCK) {
+    return 90;
+  }
+}
+
+static double Game_Ball_rebound_radian(Game_Ball* this) {
+  double this_angle = this->radian / M_PI * 180;
+  double rebound_angle = Game_Ball_wall_angle(this) * 2 - this_angle;
+  return (rebound_angle / 180) * M_PI;
+}
+
 static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double next_x, Game_Bar* bar, Game_Player* player) {
 
   int next_y_int = (int) next_y;
@@ -53,13 +74,13 @@ static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double
 
   switch (hit_map[next_y_int][next_x_int]) {
     case GAME_HIT_WALL:
-      this->radian = (M_PI / 2) + this->radian;
+      this->radian = Game_Ball_rebound_radian(this);
       break;
     case GAME_HIT_BLOCK:
       block = Game_BlockManager_get_block(next_y_int, next_x_int);
       Game_Block_break(block);
       Game_Player_score_up(player);
-      this->radian = (M_PI / 2) + this->radian;
+      this->radian = Game_Ball_rebound_radian(this);
       if (Game_BlockManager_remain_blocks() == 0) {
         Game_State_change(eGame_State_game_clear);
       }
