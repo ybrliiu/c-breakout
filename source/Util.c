@@ -10,7 +10,7 @@ void BreakOut_exit() {
   Scene_final();
   endwin();
   curs_set(1);
-  exit(0);
+  exit(1);
 }
 
 int BreakOut_centered_str_x(char *str) {
