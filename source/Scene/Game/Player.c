@@ -58,7 +58,7 @@ void Game_Player_score_up(Game_Player* this) {
   this->score += 100;
 }
 
-void Game_Player_update(Game_Player* this, int key) {
+void Game_Player_update(Game_Player* this) {
 
   this->frame_count++;
   if (this->frame_count == 60) {

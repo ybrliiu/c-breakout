@@ -18,11 +18,14 @@ typedef enum {
 } emenu;
 
 Score_Menu* Score_Menu_new() {
+
   Score_Menu* this = malloc( sizeof(Score_Menu) );
   if (this == NULL) {
     BreakOut_exit();
   }
+
   this->now_select = emenu_return_title;
+
   return this;
 }
 

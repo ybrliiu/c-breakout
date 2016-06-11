@@ -1,16 +1,16 @@
 /* メニュークラス */
 
-#ifndef START_MENU_H
-#define START_MENU_H
+#ifndef HELP_MENU_H
+#define HELP_MENU_H
 
 typedef struct {
   int now_select;
-} Start_Menu;
+} Help_Menu;
 
-Start_Menu* Start_Menu_new();
-void Start_Menu_destroy(Start_Menu* this);
+Help_Menu* Help_Menu_new();
+void Help_Menu_destroy(Help_Menu* this);
 
-void Start_Menu_update(Start_Menu* this, int key);
-void Start_Menu_draw(Start_Menu* this);
+void Help_Menu_update(Help_Menu* this, int key);
+void Help_Menu_draw(Help_Menu* this);
 
 #endif

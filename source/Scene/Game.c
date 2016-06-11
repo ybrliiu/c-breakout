@@ -52,7 +52,7 @@ void Game_update() {
 
   switch (Game_State_now()) {
     case eGame_State_play:
-      Game_Player_update(Player, key);
+      Game_Player_update(Player);
       Game_BlockManager_update();
       Game_Ball_update(Ball, key, Bar, Player); /* ボールとバーの位置逆にしない */
       Game_Bar_update(Bar, key);
