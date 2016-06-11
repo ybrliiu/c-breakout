@@ -42,7 +42,11 @@ void Game_final() {
 
 void Game_update() {
 
-  int key = getch(); /* getch()しないとシーンの表示がなされません */
+  int key = 0;
+    
+  if (Game_State_now() != eGame_State_game_clear) {
+    key = getch(); /* getch()しないとシーンの表示がなされません */
+  }
   
   Game_State_update(key);
 
@@ -50,8 +54,7 @@ void Game_update() {
     case eGame_State_play:
       Game_Player_update(Player, key);
       Game_BlockManager_update();
-      /* ボールとバーの順番逆だと上手く行かない */
-      Game_Ball_update(Ball, key, Bar, Player);
+      Game_Ball_update(Ball, key, Bar, Player); /* ボールとバーの位置逆にしない */
       Game_Bar_update(Bar, key);
       break;
     case eGame_State_pause:
@@ -61,7 +64,7 @@ void Game_update() {
       Game_Over_update();
       break;
     case eGame_State_game_clear:
-      Game_Clear_update();
+      Game_Clear_update(Player);
       break;
   }
 }

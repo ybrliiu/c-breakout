@@ -12,9 +12,16 @@ void Frame_init() {
 }
 
 void Frame_adjust() {
+
   int time;
+  int wait_time;
+
   clock_gettime(CLOCK_MONOTONIC_COARSE, &end_time);
   time = (end_time.tv_nsec - start_time.tv_nsec) / 1000;
-  usleep(FRAME - time);
+  wait_time = FRAME - time;
+  if (wait_time < 0) {
+    wait_time = FRAME;
+  }
+  usleep(wait_time);
   clock_gettime(CLOCK_MONOTONIC_COARSE, &start_time);
 }

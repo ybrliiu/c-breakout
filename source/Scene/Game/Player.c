@@ -74,7 +74,7 @@ void Game_Player_draw(Game_Player* this) {
   }
   mvprintw(status_y, 70, "経過時間:%d秒　スコア:%d", this->time, this->score);
 
-  move(GAME_PLAYER_WALL_Y, 0);
-  hline(ACS_HLINE, BREAKOUT_WIDTH - 1);
+  move(GAME_PLAYER_WALL_Y, 1);
+  hline(ACS_HLINE, BREAKOUT_WIDTH - 2);
 }
 
