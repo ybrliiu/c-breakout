@@ -16,8 +16,8 @@ typedef enum {
   emenu_num,
 } emenu;
 
-Start_Menu* Start_Menu_new() {
-  Start_Menu* this = malloc( sizeof(Start_Menu) );
+Score_Menu* Score_Menu_new() {
+  Score_Menu* this = malloc( sizeof(Score_Menu) );
   if (this == NULL) {
     BreakOut_exit();
   }
@@ -25,11 +25,11 @@ Start_Menu* Start_Menu_new() {
   return this;
 }
 
-void Start_Menu_destroy(Start_Menu* this) {
+void Score_Menu_destroy(Score_Menu* this) {
   free(this);
 }
 
-void Start_Menu_update(Start_Menu* this, int key) {
+void Score_Menu_update(Score_Menu* this, int key) {
   if (key == KEY_DOWN) {
     this->now_select = (this->now_select + 1) % emenu_num;
   }
@@ -41,12 +41,6 @@ void Start_Menu_update(Start_Menu* this, int key) {
       case emenu_game_start: 
         Scene_change(eScene_game);
         break;
-      case emenu_score: 
-        Scene_change(eScene_score);
-        break;
-      case emenu_help: 
-        Scene_change(eScene_help);
-        break;
       case emenu_game_quit: 
         BreakOut_exit();
         break;
@@ -54,7 +48,7 @@ void Start_Menu_update(Start_Menu* this, int key) {
   }
 }
 
-int Start_Menu_y(int place) {
+int Score_Menu_y(int place) {
 
   int y;
 
@@ -76,7 +70,7 @@ int Start_Menu_y(int place) {
   return y;
 }
 
-void Start_Menu_draw(Start_Menu* this) {
+void Score_Menu_draw(Score_Menu* this) {
 
   char *menu[4] = {
     "ゲームスタート",
@@ -91,7 +85,7 @@ void Start_Menu_draw(Start_Menu* this) {
   for (i = 0; i < 4; i++) {
     mvaddstr(MENU_Y[i], menu_x, menu[i]);
   }
-  mvaddstr(Start_Menu_y(this->now_select), menu_x - 2, "*");
+  mvaddstr(Score_Menu_y(this->now_select), menu_x - 2, "*");
 
   mvaddstr(26, BreakOut_centered_unicode_str_x(explain), explain);
 }

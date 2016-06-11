@@ -6,18 +6,22 @@
 
 #define SCORE_FILE "./etc/score.dat"
 
-array_Game_Player Record_read() {
-  
-  array_Game_Player players;
+void Record_error() {
+  fprintf(stderr, "ファイルが開けません\n");
+  BreakOut_exit();
+}
+
+Game_Player* Record_read() {
+
+  /* perlなどGCある言語と違い、ローカル変数を参照渡しにしても関数から抜ければローカル変数が消えてしまうので、staticつけて静的変数にする */
+  static Game_Player players[RECORD_MAX];
   FILE *fp = fopen(SCORE_FILE, "rb");
   
   if (fp == NULL) {
-    printf("ファイルが開けません\n");
+    Record_error();
   }
   
-	fread(players, sizeof(Game_Player*) * 100, 1, fp);
-	printf("score:%d name:%s \n", players[0]->score, players[0]->name);
-	
+	fread(players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
 	fclose(fp); 
 
 	return players; 
@@ -25,16 +29,16 @@ array_Game_Player Record_read() {
 
 void Record_write(Game_Player* player) {
   
-  Game_Player* players[RECORD_MAX];
+  Game_Player players[RECORD_MAX];
   FILE *fp = fopen(SCORE_FILE, "wb"); /* fopen関数では実行した場所からのパスになる */
   
   if (fp == NULL) {
-    fprintf(stderr, "ファイルが開けません\n");
-    BreakOut_exit();
+    Record_error();
   }
   
-	fwrite(players, sizeof(Game_Player*) * 100, 1, fp);
-  players[0] = player;
+  players[0] = (*player); /* デリファレンス(ポインタ->実際の値に変換) */
+
+	fwrite(players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
 	fclose(fp);  
 }
 

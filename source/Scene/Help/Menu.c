@@ -41,12 +41,6 @@ void Start_Menu_update(Start_Menu* this, int key) {
       case emenu_game_start: 
         Scene_change(eScene_game);
         break;
-      case emenu_score: 
-        Scene_change(eScene_score);
-        break;
-      case emenu_help: 
-        Scene_change(eScene_help);
-        break;
       case emenu_game_quit: 
         BreakOut_exit();
         break;
