@@ -5,7 +5,7 @@
 eGame_State_manager State;
 
 void Game_State_init() {
-  State = eGame_State_play;
+  State = eGame_State_game_clear;
 }
 
 void Game_State_update(int key) {

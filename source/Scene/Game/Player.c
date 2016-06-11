@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include <locale.h>
+#include <string.h>
 
 #include "Player.h"
 #include "../../Config.h"
@@ -40,6 +41,10 @@ Game_Player* Game_Player_new() {
 
 void Game_Player_destroy(Game_Player* this) {
   free(this);
+}
+
+void Game_Player_set_name(Game_Player* this, char* name) {
+  strcpy(this->name, name);
 }
 
 void Game_Player_ball_drop_down(Game_Player* this) {

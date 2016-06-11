@@ -51,6 +51,8 @@ static void Game_Clear_input() {
 
 static void Game_Clear_write(Game_Player* player) {
   getch();
+  Game_Player_set_name(player, Name);
+  Record_write(player);
   Scene_change(eScene_start);
 }
 

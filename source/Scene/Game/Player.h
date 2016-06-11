@@ -16,7 +16,7 @@ typedef struct {
 Game_Player* Game_Player_new();
 void Game_Player_destroy(Game_Player* this);
 
-void Game_Player_set_name();
+void Game_Player_set_name(Game_Player* this, char *name);
 void Game_Player_ball_drop_down(Game_Player* this);
 void Game_Player_score_up(Game_Player* this);
 

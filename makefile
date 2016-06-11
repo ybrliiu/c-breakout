@@ -1,10 +1,10 @@
 CC = gcc
-OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o \
+OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o source/Record.o \
  	source/Scene/Start.o source/Scene/Start/Menu.o source/Scene/Start/Title.o \
-	source/Scene/Game.o source/Scene/Game/State.o \
+  source/Scene/Game.o source/Scene/Game/State.o \
     source/Scene/Game/PauseMenu.o source/Scene/Game/Over.o source/Scene/Game/Clear.o \
     source/Scene/Game/Border.o source/Scene/Game/Player.o source/Scene/Game/Block.o source/Scene/Game/BlockManager.o \
-      source/Scene/Game/Hit.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
+    source/Scene/Game/Hit.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
 	source/Scene/Help.o \
 	source/Scene/Score.o \
 # glibcのバージョンが2.14以前の場合、time.h を使う際に-lrtを指定
@@ -68,6 +68,9 @@ source/Scene/Score.o: source/Scene/Score.c source/Scene/Score.h
 	$(CC) -c -o source/Scene/Score.o source/Scene/Score.c
 
 # メイン
+source/Record.o: source/Record.c source/Record.h
+	$(CC) -c -o source/Record.o source/Record.c
+
 source/Scene.o: source/Scene.c source/Scene.h
 	$(CC) -c -o source/Scene.o source/Scene.c
 
