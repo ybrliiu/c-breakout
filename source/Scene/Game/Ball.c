@@ -56,6 +56,8 @@ static int Game_Ball_wall_angle(Game_Ball* this) {
     return 90;
   } else if (hit_map[y_int][x_int - 1] == GAME_HIT_WALL || hit_map[y_int][x_int - 1] == GAME_HIT_BLOCK) {
     return 90;
+  } else {
+    return 180;
   }
 }
 

@@ -2,10 +2,11 @@
 #include <locale.h>
 
 #include "Title.h"
+#include "../../Util.h"
 #include "../../Config.h"
 
 static int Title_x = 0;
-static const char *Title[7] = {
+static char *Title[7] = {
   "@@@@@    @@@@@@   @@@@@@@     @@     @    @         @@@@    @      @  @@@@@@@@",
   "@    @   @     @  @          @  @    @   @         @    @   @      @     @@   ",
   "@     @  @     @  @          @  @    @  @         @      @  @      @     @@   ",

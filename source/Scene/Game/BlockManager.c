@@ -19,7 +19,7 @@ static int Game_BlockManager_space_around_block() {
 
 void Game_BlockManager_init() {
 
-  int i, y, x;
+  int y, x;
   int block_num = 0;
   int block_x = Game_BlockManager_space_around_block();
 
@@ -42,7 +42,7 @@ void Game_BlockManager_final() {
 Game_Block* Game_BlockManager_get_block(int y, int x) {
 
   int i;
-  Game_Block* block;
+  Game_Block* block = {0};
 
   for (i = 0; i < BLOCK_NUM; i++) {
     if (Game_Block_is_collision(Blocks[i], y, x)) {

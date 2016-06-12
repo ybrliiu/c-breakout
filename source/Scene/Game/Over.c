@@ -2,13 +2,14 @@
 #include <locale.h>
 
 #include "Over.h"
+#include "../../Util.h"
 #include "../../Config.h"
 #include "../../Scene.h"
 
 #define CHAR_HEIGHT 7
 
 static int Title_x = 0;
-static const char *Title[CHAR_HEIGHT] = {
+static char *Title[CHAR_HEIGHT] = {
   "  @@@@       @@       @    @    @@@@@@@         @@@@    @      @  @@@@@@@  @@@@@@ ", 
   " @    @@    @  @     @ @  @ @   @              @    @   @      @  @        @     @", 
   "@           @  @     @ @  @ @   @             @      @   @    @   @        @     @", 

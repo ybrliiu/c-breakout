@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "Clear.h"
+#include "../../Util.h"
 #include "../../Config.h"
 #include "../../Scene.h"
 #include "../../Record.h"
@@ -19,7 +20,7 @@ typedef enum {
 } eGame_Clear_state_manager;
 
 static int Title_x = 0;
-static const char *Title[CHAR_HEIGHT] = {
+static char *Title[CHAR_HEIGHT] = {
   "  @@@@       @@       @    @    @@@@@@@         @@@@    @        @@@@@@@     @@     @@@@@@ ", 
   " @    @@    @  @     @ @  @ @   @              @    @   @        @          @  @    @     @", 
   "@           @  @     @ @  @ @   @             @         @        @          @  @    @     @", 

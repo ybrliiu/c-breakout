@@ -5,6 +5,7 @@
 
 #include "Util.h"
 #include "Config.h"
+#include "Scene.h"
 
 void BreakOut_exit() {
   Scene_final();

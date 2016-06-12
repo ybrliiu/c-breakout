@@ -66,6 +66,8 @@ void Game_update() {
     case eGame_State_game_clear:
       Game_Clear_update(Player);
       break;
+    default:
+      break;
   }
 }
 
@@ -86,6 +88,8 @@ void Game_draw() {
       break;
     case eGame_State_game_clear:
       Game_Clear_draw();
+      break;
+    default:
       break;
   }
 
