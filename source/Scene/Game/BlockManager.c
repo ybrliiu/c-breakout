@@ -1,7 +1,7 @@
 #include "BlockManager.h"
 #include "../../Config.h"
 
-#define BLOCK_NUM_WIDTH 5
+#define BLOCK_NUM_WIDTH 7
 #define BLOCK_NUM_HEIGHT 2
 #define BLOCK_NUM BLOCK_NUM_WIDTH * BLOCK_NUM_HEIGHT
 
@@ -24,7 +24,7 @@ void Game_BlockManager_init() {
   int block_x = Game_BlockManager_space_around_block();
 
   for (y = 1; y <= BLOCK_NUM_HEIGHT; y++) {
-    for (x = 0; x < BREAKOUT_WIDTH; x += BLOCK_SPACE) {
+    for (x = 0; x <= BREAKOUT_WIDTH - BLOCK_SPACE; x += BLOCK_SPACE) {
       Blocks[block_num] = Game_Block_new(5 + (y * 4), x + block_x);
       block_num++;
     }

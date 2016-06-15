@@ -84,6 +84,7 @@ static void Game_Ball_collision_detection(Game_Ball* this, double next_y, double
       Game_Player_score_up(player);
       this->radian = Game_Ball_rebound_radian(this);
       if (Game_BlockManager_remain_blocks() == 0) {
+        Game_Player_calc_score(player);
         Game_State_change(eGame_State_game_clear);
       }
       break;

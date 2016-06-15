@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include <locale.h>
 #include <string.h>
+#include <math.h>
 
 #include "Player.h"
 #include "../../Config.h"
@@ -56,6 +57,11 @@ void Game_Player_ball_drop_down(Game_Player* this) {
 
 void Game_Player_score_up(Game_Player* this) {
   this->score += 100;
+}
+
+void Game_Player_calc_score(Game_Player* this) {
+  this->score += this->life * 1000;
+  this->score += (int) pow(300 - this->time, 1.4);
 }
 
 void Game_Player_update(Game_Player* this) {
