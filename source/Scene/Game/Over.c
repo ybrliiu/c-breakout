@@ -6,17 +6,19 @@
 #include "../../Config.h"
 #include "../../Scene.h"
 
-#define CHAR_HEIGHT 7
+#define CHAR_HEIGHT 9
 
 static int Title_x = 0;
 static char *Title[CHAR_HEIGHT] = {
-  "  @@@@       @@       @    @    @@@@@@@         @@@@    @      @  @@@@@@@  @@@@@@ ", 
-  " @    @@    @  @     @ @  @ @   @              @    @   @      @  @        @     @", 
-  "@           @  @     @ @  @ @   @             @      @   @    @   @        @     @", 
-  "@   @@@@   @    @    @ @  @ @   @@@@@@@       @      @   @    @   @@@@@@@  @@@@@@ ", 
-  "@      @   @@@@@@   @   @@   @  @             @      @    @  @    @        @   @  ", 
-  " @    @   @      @  @   @@   @  @              @    @     @  @    @        @    @ ", 
-  "  @@@@    @      @  @        @  @@@@@@@         @@@@       @@     @@@@@@@  @     @",  
+  "                                                                                    ",
+  "   @@@@       @@       @    @    @@@@@@@         @@@@    @      @  @@@@@@@  @@@@@@  ", 
+  "  @    @@    @  @     @ @  @ @   @              @    @   @      @  @        @     @ ", 
+  " @           @  @     @ @  @ @   @             @      @   @    @   @        @     @ ", 
+  " @   @@@@   @    @    @ @  @ @   @@@@@@@       @      @   @    @   @@@@@@@  @@@@@@  ", 
+  " @      @   @@@@@@   @   @@   @  @             @      @    @  @    @        @   @   ", 
+  "  @    @   @      @  @   @@   @  @              @    @     @  @    @        @    @  ", 
+  "   @@@@    @      @  @        @  @@@@@@@         @@@@       @@     @@@@@@@  @     @ ",  
+  "                                                                                    ",
 };
 
 void Game_Over_init() {
@@ -42,6 +44,6 @@ void Game_Over_draw() {
   mvaddstr(20, BreakOut_centered_unicode_str_x(explain), explain);
 
   for (i = 0; i < CHAR_HEIGHT; i++) {
-    mvaddstr(i + 4, Title_x, Title[i]);
+    mvaddstr(i + 8, Title_x, Title[i]);
   }
 }
