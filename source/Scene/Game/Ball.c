@@ -52,10 +52,16 @@ static int Game_Ball_wall_angle(Game_Ball* this) {
 
   if (hit_map[y_int + 1][x_int] == GAME_HIT_WALL || hit_map[y_int + 1][x_int] == GAME_HIT_BLOCK) {
     return 180;
+  } else if (hit_map[y_int - 1][x_int] == GAME_HIT_WALL || hit_map[y_int - 1][x_int] == GAME_HIT_BLOCK) {
+    return 180;
   } else if (hit_map[y_int][x_int + 1] == GAME_HIT_WALL || hit_map[y_int][x_int + 1] == GAME_HIT_BLOCK) {
     return 90;
   } else if (hit_map[y_int][x_int - 1] == GAME_HIT_WALL || hit_map[y_int][x_int - 1] == GAME_HIT_BLOCK) {
     return 90;
+  } else if (hit_map[y_int - 1][x_int - 1] == GAME_HIT_WALL || hit_map[y_int - 1][x_int - 1] == GAME_HIT_BLOCK) {
+    return 135;
+  } else if (hit_map[y_int - 1][x_int + 1] == GAME_HIT_WALL || hit_map[y_int - 1][x_int + 1] == GAME_HIT_BLOCK) {
+    return 45;
   } else {
     return 180;
   }

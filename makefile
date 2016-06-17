@@ -1,4 +1,5 @@
 CC = gcc
+CFLAGS = -Wall -O0
 OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o source/Record.o \
  	source/Scene/Start.o source/Scene/Start/Menu.o source/Scene/Start/Title.o \
   source/Scene/Game.o source/Scene/Game/State.o \
@@ -14,83 +15,83 @@ all: Breakout
 
 # スタートシーン
 source/Scene/Start/Title.o: source/Scene/Start/Title.c source/Scene/Start/Title.h
-	$(CC) -c -o source/Scene/Start/Title.o source/Scene/Start/Title.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Start/Title.o source/Scene/Start/Title.c
 
 source/Scene/Start/Menu.o: source/Scene/Start/Menu.c source/Scene/Start/Menu.h
-	$(CC) -c -o source/Scene/Start/Menu.o source/Scene/Start/Menu.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Start/Menu.o source/Scene/Start/Menu.c
 
 source/Scene/Start.o: source/Scene/Start.c source/Scene/Start.h
-	$(CC) -c -o source/Scene/Start.o source/Scene/Start.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Start.o source/Scene/Start.c
 
 # ゲームシーン
 source/Scene/Game/Border.o: source/Scene/Game/Border.c source/Scene/Game/Border.h
-	$(CC) -c -o source/Scene/Game/Border.o source/Scene/Game/Border.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Border.o source/Scene/Game/Border.c
 
 source/Scene/Game/Player.o: source/Scene/Game/Player.c source/Scene/Game/Player.h
-	$(CC) -c -o source/Scene/Game/Player.o source/Scene/Game/Player.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Player.o source/Scene/Game/Player.c
 
 source/Scene/Game/BlockManager.o: source/Scene/Game/BlockManager.c source/Scene/Game/BlockManager.h
-	$(CC) -c -o source/Scene/Game/BlockManager.o source/Scene/Game/BlockManager.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/BlockManager.o source/Scene/Game/BlockManager.c
 
 source/Scene/Game/Block.o: source/Scene/Game/Block.c source/Scene/Game/Block.h
-	$(CC) -c -o source/Scene/Game/Block.o source/Scene/Game/Block.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Block.o source/Scene/Game/Block.c
 
 source/Scene/Game/Hit.o: source/Scene/Game/Hit.c source/Scene/Game/Hit.h
-	$(CC) -c -o source/Scene/Game/Hit.o source/Scene/Game/Hit.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Hit.o source/Scene/Game/Hit.c
 
 source/Scene/Game/Bar.o: source/Scene/Game/Bar.c source/Scene/Game/Bar.h
-	$(CC) -c -o source/Scene/Game/Bar.o source/Scene/Game/Bar.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Bar.o source/Scene/Game/Bar.c
 
 source/Scene/Game/Ball.o: source/Scene/Game/Ball.c source/Scene/Game/Ball.h
-	$(CC) -c -o source/Scene/Game/Ball.o source/Scene/Game/Ball.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Ball.o source/Scene/Game/Ball.c
 
 source/Scene/Game/Clear.o: source/Scene/Game/Clear.c source/Scene/Game/Clear.h
-	$(CC) -c -o source/Scene/Game/Clear.o source/Scene/Game/Clear.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Clear.o source/Scene/Game/Clear.c
 
 source/Scene/Game/Over.o: source/Scene/Game/Over.c source/Scene/Game/Over.h
-	$(CC) -c -o source/Scene/Game/Over.o source/Scene/Game/Over.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game/Over.o source/Scene/Game/Over.c
 
 source/PauseMenu/Game/PauseMenu.o: source/PauseMenu/Game/PauseMenu.c source/PauseMenu/Game/PauseMenu.h
-	$(CC) -c -o source/PauseMenu/Game/PauseMenu.o source/PauseMenu/Game/PauseMenu.c
+	$(CC) $(CFLAGS) -c -o source/PauseMenu/Game/PauseMenu.o source/PauseMenu/Game/PauseMenu.c
 
 source/State/Game/State.o: source/State/Game/State.c source/State/Game/State.h
-	$(CC) -c -o source/State/Game/State.o source/State/Game/State.c
+	$(CC) $(CFLAGS) -c -o source/State/Game/State.o source/State/Game/State.c
 
 source/Scene/Game.o: source/Scene/Game.c source/Scene/Game.h
-	$(CC) -c -o source/Scene/Game.o source/Scene/Game.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Game.o source/Scene/Game.c
 
 # ヘルプシーン
 source/Scene/Help/Menu.o: source/Scene/Help/Menu.c source/Scene/Help/Menu.h
-	$(CC) -c -o source/Scene/Help/Menu.o source/Scene/Help/Menu.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Help/Menu.o source/Scene/Help/Menu.c
 
 source/Scene/Help.o: source/Scene/Help.c source/Scene/Help.h
-	$(CC) -c -o source/Scene/Help.o source/Scene/Help.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Help.o source/Scene/Help.c
 
 # スコアシーン
 source/Scene/Score/Ranking.o: source/Scene/Score/Ranking.c source/Scene/Score/Ranking.h
-	$(CC) -c -o source/Scene/Score/Ranking.o source/Scene/Score/Ranking.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Score/Ranking.o source/Scene/Score/Ranking.c
 
 source/Scene/Score/Menu.o: source/Scene/Score/Menu.c source/Scene/Score/Menu.h
-	$(CC) -c -o source/Scene/Score/Menu.o source/Scene/Score/Menu.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Score/Menu.o source/Scene/Score/Menu.c
 
 source/Scene/Score.o: source/Scene/Score.c source/Scene/Score.h
-	$(CC) -c -o source/Scene/Score.o source/Scene/Score.c
+	$(CC) $(CFLAGS) -c -o source/Scene/Score.o source/Scene/Score.c
 
 # メイン
 source/Record.o: source/Record.c source/Record.h
-	$(CC) -c -o source/Record.o source/Record.c
+	$(CC) $(CFLAGS) -c -o source/Record.o source/Record.c
 
 source/Scene.o: source/Scene.c source/Scene.h
-	$(CC) -c -o source/Scene.o source/Scene.c
+	$(CC) $(CFLAGS) -c -o source/Scene.o source/Scene.c
 
 source/Util.o: source/Util.c source/Util.h
-	$(CC) -c -o source/Util.o source/Util.c
+	$(CC) $(CFLAGS) -c -o source/Util.o source/Util.c
 
 source/Frame.o: source/Frame.c source/Frame.h
-	$(CC) -c -o source/Frame.o source/Frame.c
+	$(CC) $(CFLAGS) -c -o source/Frame.o source/Frame.c
 
 source/main.o: source/main.c
-	$(CC) -c -o source/main.o source/main.c
+	$(CC) $(CFLAGS) -c -o source/main.o source/main.c
 
 # 
 Breakout: $(OBJS)
