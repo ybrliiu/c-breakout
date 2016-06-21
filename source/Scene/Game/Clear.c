@@ -9,7 +9,7 @@
 #include "../../Scene.h"
 #include "../../Record.h"
 
-#define CHAR_HEIGHT 7
+#define CHAR_HEIGHT 9
 
 typedef enum {
   eGame_Clear_setup,
@@ -21,13 +21,15 @@ typedef enum {
 
 static int Title_x = 0;
 static char *Title[CHAR_HEIGHT] = {
-  "  @@@@       @@       @    @    @@@@@@@         @@@@    @        @@@@@@@     @@     @@@@@@ ", 
-  " @    @@    @  @     @ @  @ @   @              @    @   @        @          @  @    @     @", 
-  "@           @  @     @ @  @ @   @             @         @        @          @  @    @     @", 
-  "@   @@@@   @    @    @ @  @ @   @@@@@@@       @         @        @@@@@@@   @    @   @@@@@@ ", 
-  "@      @   @@@@@@   @   @@   @  @             @         @        @         @@@@@@   @   @  ", 
-  " @    @   @      @  @   @@   @  @              @    @   @        @        @      @  @    @ ", 
-  "  @@@@    @      @  @        @  @@@@@@@         @@@@    @@@@@@@  @@@@@@@  @      @  @     @",  
+  "                                                                                             ",
+  "   @@@@       @@       @    @    @@@@@@@         @@@@    @        @@@@@@@     @@     @@@@@@  ", 
+  "  @    @@    @  @     @ @  @ @   @              @    @   @        @          @  @    @     @ ", 
+  " @           @  @     @ @  @ @   @             @         @        @          @  @    @     @ ", 
+  " @   @@@@   @    @    @ @  @ @   @@@@@@@       @         @        @@@@@@@   @    @   @@@@@@  ", 
+  " @      @   @@@@@@   @   @@   @  @             @         @        @         @@@@@@   @   @   ", 
+  "  @    @   @      @  @   @@   @  @              @    @   @        @        @      @  @    @  ", 
+  "   @@@@    @      @  @        @  @@@@@@@         @@@@    @@@@@@@  @@@@@@@  @      @  @     @ ",  
+  "                                                                                             ",
 };
 static char Name[GAME_PLAYER_NAME_SIZE] = "";
 
@@ -89,7 +91,7 @@ void Game_Clear_draw() {
   explain_x = BreakOut_centered_unicode_str_x(explain);
 
   for (i = 0; i < CHAR_HEIGHT; i++) {
-    mvaddstr(i + 4, Title_x, Title[i]);
+    mvaddstr(i + 8, Title_x, Title[i]);
   }
 
   mvaddstr(20, explain_x, explain);
