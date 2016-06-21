@@ -50,26 +50,35 @@ static int Game_Ball_wall_angle(Game_Ball* this) {
   int x_int = (int) this->x;
   array_2D hit_map = Game_Hit_get_map();
 
-  if (hit_map[y_int + 1][x_int] == GAME_HIT_WALL || hit_map[y_int + 1][x_int] == GAME_HIT_BLOCK) {
-    return 180;
-  } else if (hit_map[y_int - 1][x_int] == GAME_HIT_WALL || hit_map[y_int - 1][x_int] == GAME_HIT_BLOCK) {
-    return 180;
-  } else if (hit_map[y_int][x_int + 1] == GAME_HIT_WALL || hit_map[y_int][x_int + 1] == GAME_HIT_BLOCK) {
+  if (hit_map[y_int][x_int + 1] == GAME_HIT_WALL || hit_map[y_int][x_int + 1] == GAME_HIT_BLOCK) {
     return 90;
   } else if (hit_map[y_int][x_int - 1] == GAME_HIT_WALL || hit_map[y_int][x_int - 1] == GAME_HIT_BLOCK) {
     return 90;
-  } else if (hit_map[y_int - 1][x_int - 1] == GAME_HIT_WALL || hit_map[y_int - 1][x_int - 1] == GAME_HIT_BLOCK) {
-    return 135;
-  } else if (hit_map[y_int - 1][x_int + 1] == GAME_HIT_WALL || hit_map[y_int - 1][x_int + 1] == GAME_HIT_BLOCK) {
-    return 45;
+  } else if (hit_map[y_int + 1][x_int] == GAME_HIT_WALL || hit_map[y_int + 1][x_int] == GAME_HIT_BLOCK) {
+    return 180;
+  } else if (hit_map[y_int - 1][x_int] == GAME_HIT_WALL || hit_map[y_int - 1][x_int] == GAME_HIT_BLOCK) {
+    return 180;
   } else {
     return 180;
   }
 }
 
 static double Game_Ball_rebound_radian(Game_Ball* this) {
+
   double this_angle = this->radian / M_PI * 180;
-  double rebound_angle = Game_Ball_wall_angle(this) * 2 - this_angle;
+  double rebound_angle;
+  int y_int = (int) this->y;
+  int x_int = (int) this->x;
+
+  /* 隅にあたった時の特殊処理 */
+  if (y_int == 3 && x_int == 98) {
+    rebound_angle = 225;
+  } else if (y_int == 3 && x_int == 1) {
+    rebound_angle = 315;
+  } else {
+    rebound_angle = Game_Ball_wall_angle(this) * 2 - this_angle;
+  }
+
   return (rebound_angle / 180) * M_PI;
 }
 
