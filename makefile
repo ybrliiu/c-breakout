@@ -6,7 +6,7 @@ OBJS = source/main.o source/Frame.o source/Util.o source/Scene.o source/Record.o
     source/Scene/Game/PauseMenu.o source/Scene/Game/Over.o source/Scene/Game/Clear.o \
     source/Scene/Game/Border.o source/Scene/Game/Player.o source/Scene/Game/Block.o source/Scene/Game/BlockManager.o \
     source/Scene/Game/Hit.o source/Scene/Game/Bar.o source/Scene/Game/Ball.o \
-	source/Scene/Help.o source/Scene/Help/Menu.o \
+	source/Scene/Help.o source/Scene/Help/Menu.o source/Scene/Help/Explain.o \
 	source/Scene/Score.o source/Scene/Score/Menu.o source/Scene/Score/Ranking.o \
 # glibcのバージョンが2.14以前の場合、time.h を使う際に-lrtを指定
 LIBS = -lncursesw -lm -lrt
@@ -61,6 +61,9 @@ source/Scene/Game.o: source/Scene/Game.c source/Scene/Game.h
 	$(CC) $(CFLAGS) -c -o source/Scene/Game.o source/Scene/Game.c
 
 # ヘルプシーン
+source/Scene/Help/Explain.o: source/Scene/Help/Explain.c source/Scene/Help/Explain.h
+	$(CC) $(CFLAGS) -c -o source/Scene/Help/Explain.o source/Scene/Help/Explain.c
+
 source/Scene/Help/Menu.o: source/Scene/Help/Menu.c source/Scene/Help/Menu.h
 	$(CC) $(CFLAGS) -c -o source/Scene/Help/Menu.o source/Scene/Help/Menu.c
 

@@ -3,6 +3,7 @@
 
 #include "Help.h"
 #include "Help/Menu.h"
+#include "Help/Explain.h"
 #include "../Util.h"
 
 Help_Menu* Menu;
@@ -23,4 +24,5 @@ void Help_update() {
 void Help_draw() {
   BreakOut_draw_border();
   Help_Menu_draw(Menu);
+  Help_Explain_draw();
 }

@@ -72,7 +72,6 @@ int Help_Menu_y(int place) {
 
 void Help_Menu_draw(Help_Menu* this) {
 
-  static char title[] = "操作方法";
   static char *menu[HELP_MENU_NUM] = {
     "              ",
     "タイトルへ戻る",
@@ -80,7 +79,6 @@ void Help_Menu_draw(Help_Menu* this) {
   int menu_x = BreakOut_centered_unicode_str_x(menu[0]);
   int i;
 
-  mvaddstr(2, BreakOut_centered_unicode_str_x(title), title);
   for (i = 0; i < HELP_MENU_NUM; i++) {
     mvaddstr(MENU_Y[i], menu_x, menu[i]);
   }
