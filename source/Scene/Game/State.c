@@ -11,7 +11,9 @@ void Game_State_init() {
 void Game_State_update(int key) {
   switch (key) {
     case 'p':
-      Game_State_change(eGame_State_pause);
+      if (Game_State_now() == eGame_State_play) {
+        Game_State_change(eGame_State_pause);
+      }
       break;
   }
 }

@@ -59,12 +59,12 @@ Game_Player* Record_read() {
     Record_error();
   }
   
-	fread(players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
-	fclose(fp); 
+  fread(players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
+  fclose(fp); 
 
   qsort(players, RECORD_MAX, sizeof(Game_Player), Record_compare_score);
 
-	return players; 
+  return players; 
 }
 
 void Record_write(Game_Player* player) {
@@ -73,7 +73,7 @@ void Record_write(Game_Player* player) {
   if (fp == NULL) {
     Record_error();
   }
-	fread(Players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
+  fread(Players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
   fclose(fp);
 
   fp = fopen(SCORE_FILE, "wb");
@@ -82,7 +82,7 @@ void Record_write(Game_Player* player) {
   }
   Record_enqueue( (*player) ); /* (*player) = デリファレンス(ポインタ->実際の値に変換) */
   Record_dequeue();
-	fwrite(Players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
-	fclose(fp);  
+  fwrite(Players, sizeof(Game_Player) * RECORD_MAX, 1, fp);
+  fclose(fp);  
 }
 
