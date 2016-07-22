@@ -26,12 +26,12 @@ int BreakOut_centered_unicode_str_x(char *str) {
 
 void BreakOut_draw_border() {
   move(0, 0);
-  hline(ACS_HLINE, BREAKOUT_WIDTH - 1);
+  hline(ACS_HLINE|COLOR_PAIR(COLOR_WHITE), BREAKOUT_WIDTH - 1);
   move(0, 0);
-  vline(ACS_VLINE, BREAKOUT_HEIGHT);
+  vline(ACS_VLINE|COLOR_PAIR(COLOR_WHITE), BREAKOUT_HEIGHT);
   move(0, BREAKOUT_WIDTH - 1);
-  vline(ACS_VLINE, BREAKOUT_HEIGHT);
+  vline(ACS_VLINE|COLOR_PAIR(COLOR_WHITE), BREAKOUT_HEIGHT);
   move(BREAKOUT_HEIGHT - 1, 1);
-  hline(ACS_HLINE, BREAKOUT_WIDTH - 2);
+  hline(ACS_HLINE|COLOR_PAIR(COLOR_WHITE), BREAKOUT_WIDTH - 2);
 }
 

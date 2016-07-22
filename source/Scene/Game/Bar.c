@@ -115,6 +115,8 @@ void Game_Bar_update(Game_Bar* this, int key) {
 }
 
 void Game_Bar_draw(Game_Bar* this) {
+  attrset(COLOR_PAIR(COLOR_YELLOW));
   mvaddstr(this->y, this->x, this->shape);
+  attroff(COLOR_PAIR(COLOR_YELLOW));
 }
 

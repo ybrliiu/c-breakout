@@ -27,6 +27,7 @@ void BreakOut_check_screen_size() {
 void BreakOut_setup() {
   setlocale(LC_ALL, "");
   initscr();
+  start_color();
   noecho();
   cbreak();
   BreakOut_check_screen_size();
@@ -34,6 +35,11 @@ void BreakOut_setup() {
   timeout(0);  /* キー入力も待ち時間 */
   keypad(stdscr, TRUE); /* 特殊キーマクロセット */
   Frame_init(); /* フレーム初期化 */
+
+  init_pair(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE);
+  init_pair(COLOR_YELLOW, COLOR_YELLOW, COLOR_YELLOW);
+  init_pair(COLOR_RED, COLOR_RED, COLOR_BLACK);
+  init_pair(COLOR_BLUE, COLOR_BLACK, COLOR_BLUE);
 }
 
 int main() {

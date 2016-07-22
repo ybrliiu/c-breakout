@@ -145,6 +145,20 @@ static void Game_Ball_move_on_the_bar(Game_Ball* this, int key, Game_Bar* bar) {
 }
 
 void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar, Game_Player* player) {
+
+  switch (key) {
+    case KEY_UP:
+      if (this->speed < 0.7) {
+        this->speed += 0.1;
+      }
+      break;
+    case KEY_DOWN:
+      if (this->speed > 0.1) {
+        this->speed -= 0.1;
+      }
+      break;
+  }
+
   if (this->on_the_bar) {
     Game_Ball_move_on_the_bar(this, key, bar);
   } else {
@@ -153,6 +167,8 @@ void Game_Ball_update(Game_Ball* this, int key, Game_Bar* bar, Game_Player* play
 }
 
 void Game_Ball_draw(Game_Ball* this) {
+  attrset(COLOR_PAIR(COLOR_RED));
   mvaddstr(this->y, this->x, this->shape);
+  attroff(COLOR_PAIR(COLOR_RED));
 }
 

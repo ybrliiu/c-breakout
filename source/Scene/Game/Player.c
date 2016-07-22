@@ -80,12 +80,14 @@ void Game_Player_draw(Game_Player* this) {
   int i;
 
   mvaddstr(status_y, 53, "ライフ:");
+  attrset(COLOR_PAIR(COLOR_RED));
   for (i = 1; i <= this->life; i++) {
     mvaddstr(status_y, 60 + (i * 2), "❤");
   }
+  attroff(COLOR_PAIR(COLOR_RED));
   mvprintw(status_y, 70, "経過時間:%d秒　スコア:%d", this->time, this->score);
 
   move(GAME_PLAYER_WALL_Y, 1);
-  hline(ACS_HLINE, BREAKOUT_WIDTH - 2);
+  hline(ACS_HLINE|COLOR_PAIR(COLOR_WHITE), BREAKOUT_WIDTH - 2);
 }
 

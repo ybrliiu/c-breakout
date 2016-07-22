@@ -93,9 +93,11 @@ void Game_Block_draw(Game_Block* this) {
   int y;
 
   if (!this->broken) {
+    attrset(COLOR_PAIR(COLOR_BLUE));
     for (y = 0; y < this->height; y++) {
       mvaddstr(this->y + y, this->x, this->shape);
     }
+    attrset(COLOR_PAIR(COLOR_BLUE));
   }
 }
 
